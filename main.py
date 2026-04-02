@@ -143,7 +143,7 @@ def main():
     watchlist_items = update_watchlist_status(watchlist)
     save_watchlist(watchlist)
 
-    # ── Step 6: HTML 리포트 생성 ──
+    # ── Step 6: HTML 리포트 생성 (Slack fallback용) ──
     logger.info("[5/7] HTML 리포트 생성...")
     report_path = generate_report(
         issue_number=issue_number,
@@ -156,13 +156,19 @@ def main():
         output_path=f"chance_sensor_{datetime.now().strftime('%Y%m%d')}.html",
     )
 
-    # ── Step 7: Confluence 아카이빙 ──
+    # ── Step 7: Confluence 아카이빙 (네이티브 포맷) ──
     logger.info("[6/7] Confluence 발행...")
-    with open(report_path, "r", encoding="utf-8") as f:
-        html_content = f.read()
+    report_data = {
+        "summary": weekly_summary,
+        "signals": signals,
+        "trending": trending,
+        "buzz_items": buzz_items,
+        "genre_watches": genre_watches,
+        "watchlist_items": watchlist_items,
+    }
 
     confluence = ConfluencePublisher()
-    publish_result = confluence.publish_report(html_content, issue_number)
+    publish_result = confluence.publish_report(report_data, issue_number)
 
     # ── Step 8: Slack 발송 ──
     logger.info("[7/7] Slack 발송...")
