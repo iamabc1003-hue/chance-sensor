@@ -38,6 +38,18 @@ SIGNAL_MAX_ALERTS = 5  # Signal Alert 최대 표시 수
 # ── SteamSpy API ──
 STEAMSPY_BASE_URL = "https://steamspy.com/api.php"
 
+# SteamSpy 태그명 매핑 (장르 → SteamSpy에서 사용하는 태그명)
+STEAMSPY_GENRE_TAGS = {
+    "턴제 RPG / JRPG": ["Turn-Based", "JRPG", "Turn-Based Combat", "Turn-Based Strategy", "Turn-Based Tactics"],
+    "히어로 슈터 / MOBA": ["Hero Shooter", "MOBA"],
+    "생존 크래프트": ["Survival", "Crafting"],
+    "로그라이크 / 오토배틀러": ["Roguelike", "Roguelite", "Roguelike Deckbuilder", "Auto Battler"],
+    "액션 RPG": ["Action RPG", "Hack and Slash", "Souls-like"],
+    "오픈월드": ["Open World"],
+    "택티컬 슈터": ["Tactical", "Extraction Shooter"],
+    "메트로배니아": ["Metroidvania"],
+}
+
 # ── Reddit 수집 설정 ──
 REDDIT_USER_AGENT = "ChanceSensor/1.0 (by RisingWings)"
 REDDIT_SUBREDDITS = [

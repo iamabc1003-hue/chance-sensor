@@ -25,7 +25,11 @@ class RedditCollector:
 
     def __init__(self):
         self.session = requests.Session()
-        self.session.headers.update({"User-Agent": REDDIT_USER_AGENT})
+        # Reddit 공개 JSON은 봇 User-Agent를 차단하므로 브라우저 UA 사용
+        self.session.headers.update({
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+            "Accept": "application/json",
+        })
 
     def get_top_posts(self, subreddit: str, time_filter: str = "week", limit: int = None) -> list[dict]:
         """특정 서브레딧의 주간 인기 포스트 수집"""

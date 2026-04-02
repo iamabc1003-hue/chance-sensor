@@ -1,7 +1,8 @@
 """
-Steam 데이터 수집 모듈
-- SteamSpy API를 통한 인기 게임 및 장르 데이터 수집
-- Steam Store API를 통한 게임 상세정보 수집
+Steam 데이터 수집 모듈 v2
+- SteamSpy 태그별 장르 수집으로 중소형/신작 타이틀 포착
+- Steam Store API로 상세정보 보강
+- 대형 기존작 필터링
 """
 
 import requests
@@ -9,13 +10,16 @@ import time
 import logging
 from typing import Optional
 
-from config import STEAMSPY_BASE_URL, STEAM_TRENDING_TOP_N
+from config import STEAMSPY_BASE_URL, STEAMSPY_GENRE_TAGS, STEAM_TRENDING_TOP_N
 
 logger = logging.getLogger(__name__)
 
+# 대형 기존작 제외 — 소유자 2000만 이상은 이미 알려진 게임
+MEGA_TITLE_THRESHOLD = 20_000_000
+
 
 def get_top_games_2weeks() -> list[dict]:
-    """최근 2주간 인기 게임 목록 (SteamSpy)"""
+    """최근 2주간 인기 게임 (대형 기존작 제외)"""
     try:
         resp = requests.get(
             STEAMSPY_BASE_URL,
@@ -27,33 +31,27 @@ def get_top_games_2weeks() -> list[dict]:
 
         games = []
         for appid, info in data.items():
-            games.append({
-                "appid": int(appid),
-                "name": info.get("name", ""),
-                "developer": info.get("developer", ""),
-                "publisher": info.get("publisher", ""),
-                "owners": info.get("owners", ""),
-                "positive": info.get("positive", 0),
-                "negative": info.get("negative", 0),
-                "average_playtime": info.get("average_forever", 0),
-                "tags": info.get("tags", {}),
-            })
+            owners_mid = _parse_owners_mid(info.get("owners", "0 .. 0"))
+            # 초대형 기존작 제외
+            if owners_mid >= MEGA_TITLE_THRESHOLD:
+                continue
 
-        # 소유자 수 기준 정렬
+            games.append(_parse_steamspy_game(appid, info))
+
         games.sort(key=lambda x: _parse_owners_mid(x["owners"]), reverse=True)
-        return games[:STEAM_TRENDING_TOP_N * 3]  # 여유분 확보
+        return games
 
     except Exception as e:
         logger.error(f"SteamSpy top100in2weeks 수집 실패: {e}")
         return []
 
 
-def get_genre_games(genre_tag: str) -> list[dict]:
-    """특정 태그의 인기 게임 목록"""
+def get_games_by_tag(tag: str) -> list[dict]:
+    """SteamSpy 태그별 게임 수집"""
     try:
         resp = requests.get(
             STEAMSPY_BASE_URL,
-            params={"request": "tag", "tag": genre_tag},
+            params={"request": "tag", "tag": tag},
             timeout=30,
         )
         resp.raise_for_status()
@@ -61,20 +59,35 @@ def get_genre_games(genre_tag: str) -> list[dict]:
 
         games = []
         for appid, info in data.items():
-            games.append({
-                "appid": int(appid),
-                "name": info.get("name", ""),
-                "owners": info.get("owners", ""),
-                "positive": info.get("positive", 0),
-                "negative": info.get("negative", 0),
-                "tags": info.get("tags", {}),
-            })
+            owners_mid = _parse_owners_mid(info.get("owners", "0 .. 0"))
+            if owners_mid >= MEGA_TITLE_THRESHOLD:
+                continue
+            games.append(_parse_steamspy_game(appid, info))
 
+        games.sort(key=lambda x: _parse_owners_mid(x["owners"]), reverse=True)
         return games
 
     except Exception as e:
-        logger.error(f"SteamSpy tag '{genre_tag}' 수집 실패: {e}")
+        logger.error(f"SteamSpy tag '{tag}' 수집 실패: {e}")
         return []
+
+
+def collect_genre_games() -> dict[str, list[dict]]:
+    """설정된 모든 장르 태그별로 게임 수집"""
+    genre_data = {}
+    for genre_name, steam_tags in STEAMSPY_GENRE_TAGS.items():
+        all_games = {}
+        for tag in steam_tags:
+            logger.info(f"  Steam tag '{tag}' 수집 중...")
+            games = get_games_by_tag(tag)
+            for g in games:
+                all_games[g["appid"]] = g  # 중복 제거
+            time.sleep(1.5)  # SteamSpy rate limit
+
+        genre_data[genre_name] = list(all_games.values())
+        logger.info(f"  → {genre_name}: {len(genre_data[genre_name])}개 게임")
+
+    return genre_data
 
 
 def get_app_details(appid: int) -> Optional[dict]:
@@ -113,52 +126,34 @@ def get_app_details(appid: int) -> Optional[dict]:
         return None
 
 
-def get_new_releases() -> list[dict]:
-    """최근 신규 출시 게임"""
-    try:
-        resp = requests.get(
-            STEAMSPY_BASE_URL,
-            params={"request": "top100in2weeks"},
-            timeout=30,
-        )
-        resp.raise_for_status()
-        data = resp.json()
-
-        # 소유자 수가 적은 (= 최근 출시 가능성) 게임 필터링
-        games = []
-        for appid, info in data.items():
-            owners_mid = _parse_owners_mid(info.get("owners", "0 .. 0"))
-            if owners_mid < 500000:  # 50만 미만 = 비교적 신규
-                games.append({
-                    "appid": int(appid),
-                    "name": info.get("name", ""),
-                    "owners": info.get("owners", ""),
-                    "positive": info.get("positive", 0),
-                    "negative": info.get("negative", 0),
-                    "tags": info.get("tags", {}),
-                })
-
-        return games
-
-    except Exception as e:
-        logger.error(f"신규 출시 수집 실패: {e}")
-        return []
-
-
-def enrich_games_with_details(games: list[dict], delay: float = 1.0) -> list[dict]:
-    """게임 목록에 Steam Store 상세정보 추가 (rate limit 준수)"""
+def enrich_games_with_details(games: list[dict], delay: float = 1.5, max_count: int = 15) -> list[dict]:
+    """게임 목록에 Steam Store 상세정보 추가"""
     enriched = []
-    for game in games:
+    for game in games[:max_count]:
         details = get_app_details(game["appid"])
         if details:
             game.update(details)
         enriched.append(game)
-        time.sleep(delay)  # Steam API rate limit
+        time.sleep(delay)
     return enriched
 
 
+def _parse_steamspy_game(appid, info: dict) -> dict:
+    """SteamSpy 응답을 표준 게임 dict로 변환"""
+    return {
+        "appid": int(appid),
+        "name": info.get("name", ""),
+        "developer": info.get("developer", ""),
+        "publisher": info.get("publisher", ""),
+        "owners": info.get("owners", ""),
+        "positive": info.get("positive", 0),
+        "negative": info.get("negative", 0),
+        "average_playtime": info.get("average_forever", 0),
+        "tags": info.get("tags", {}),
+    }
+
+
 def _parse_owners_mid(owners_str: str) -> int:
-    """'20,000 .. 50,000' 형식에서 중간값 추출"""
     try:
         parts = owners_str.replace(",", "").split(" .. ")
         low = int(parts[0])
