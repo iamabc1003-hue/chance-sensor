@@ -24,6 +24,8 @@ logger = logging.getLogger(__name__)
 class ConfluencePublisher:
     def __init__(self):
         self.base_url = CONFLUENCE_BASE_URL.rstrip("/")
+        # Atlassian Cloud는 /wiki/rest/api 경로 사용
+        self.api_base = f"{self.base_url}/wiki"
         self.auth = (CONFLUENCE_USER_EMAIL, CONFLUENCE_API_TOKEN)
         self.headers = {
             "Content-Type": "application/json",
@@ -70,7 +72,7 @@ class ConfluencePublisher:
 
         try:
             resp = requests.post(
-                f"{self.base_url}/rest/api/content",
+                f"{self.api_base}/rest/api/content",
                 auth=self.auth,
                 headers=self.headers,
                 json=payload,
@@ -118,7 +120,7 @@ class ConfluencePublisher:
 
         try:
             resp = requests.put(
-                f"{self.base_url}/rest/api/content/{page_id}",
+                f"{self.api_base}/rest/api/content/{page_id}",
                 auth=self.auth,
                 headers=self.headers,
                 json=payload,
@@ -149,7 +151,7 @@ class ConfluencePublisher:
         """제목으로 기존 페이지 검색"""
         try:
             resp = requests.get(
-                f"{self.base_url}/rest/api/content",
+                f"{self.api_base}/rest/api/content",
                 auth=self.auth,
                 headers=self.headers,
                 params={

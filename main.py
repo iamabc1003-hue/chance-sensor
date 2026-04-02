@@ -17,7 +17,7 @@ import sys
 from datetime import datetime
 
 from collectors.steam import get_top_games_2weeks, enrich_games_with_details
-from collectors.reddit import RedditCollector
+from collectors.reddit_public import RedditCollector
 from analyzer.signal_detector import (
     load_watchlist, save_watchlist,
     detect_signals, update_watchlist_status,
