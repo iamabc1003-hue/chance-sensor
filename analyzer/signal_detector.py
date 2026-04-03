@@ -6,6 +6,7 @@ Signal Detector
 
 import json
 import logging
+import math
 from datetime import datetime
 
 from config import (
@@ -118,7 +119,6 @@ def detect_signals(current_games: list[dict], watchlist: dict) -> list[dict]:
 
     # 신규 진입 중 복합 점수 상위만 Signal + Watchlist에 추가
     # 베이지안 보정으로 리뷰 적은 게임의 과대평가 방지
-    import math
     PRIOR_RATIO = 75.0
     PRIOR_WEIGHT = 100
 

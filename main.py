@@ -6,6 +6,7 @@ Steam 수집 → Signal 감지 → Claude 분석 → HTML 생성 → Google Driv
 """
 
 import logging
+import math
 import sys
 from datetime import datetime
 
@@ -53,7 +54,7 @@ def main():
     logger.info(f"Issue #{issue_number:03d}")
 
     # ── Step 1: Steam 데이터 수집 ──
-    logger.info("[1/5] Steam 데이터 수집...")
+    logger.info("[1/6] Steam 데이터 수집...")
 
     raw_games = get_top_games_2weeks()
     logger.info(f"  → Top 2weeks: {len(raw_games)}개")
@@ -80,12 +81,19 @@ def main():
 
     buzz_items = []
     for post in reddit_posts[:10]:
+        upvotes = post.get("upvotes", 0)
+        comments = post.get("num_comments", 0)
+        sub = post.get("subreddit", "")
+        if upvotes > 0:
+            stats = f"{upvotes:,} upvotes · {comments:,} comments · r/{sub}"
+        else:
+            stats = f"r/{sub} · Top this week"
         buzz_items.append({
             "source": "Reddit",
             "title": post.get("title", ""),
             "url": post.get("url", ""),
             "description": post.get("selftext", "")[:200],
-            "stats": f"{post.get('upvotes', 0):,} upvotes · {post.get('num_comments', 0):,} comments · r/{post.get('subreddit', '')}",
+            "stats": stats,
         })
     logger.info(f"  → Community Buzz: {len(buzz_items)}개")
 
@@ -106,7 +114,7 @@ def main():
                     s["details"] = eg
                     break
 
-    # ── Step 3: Claude API 분석 ──
+    # ── Step 4: Claude API 분석 ──
     logger.info("[4/6] Claude API 분석...")
 
     for i, signal in enumerate(signals):
@@ -150,7 +158,6 @@ def main():
         bayesian_ratio = (pos + PRIOR_WEIGHT * PRIOR_RATIO / 100) / (total_reviews + PRIOR_WEIGHT) * 100
 
         # 리뷰수 가산: log 스케일, 리뷰 1000개 → +10, 5000개 → +15, 10000개 → +17
-        import math
         review_bonus = min(math.log10(max(total_reviews, 1)) * 5, 20)
 
         # 소규모 가산: 소유자 적을수록 "숨은 보석" 가능성
@@ -180,7 +187,7 @@ def main():
     watchlist_items = update_watchlist_status(watchlist)
     save_watchlist(watchlist)
 
-    # ── Step 4: HTML 리포트 ──
+    # ── Step 5: HTML 리포트 ──
     logger.info("[5/6] HTML 리포트 생성...")
     report_path = generate_report(
         issue_number=issue_number,

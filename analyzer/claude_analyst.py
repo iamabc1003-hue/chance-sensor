@@ -5,6 +5,7 @@ Claude API Analyst
 
 import json
 import logging
+import os
 import requests
 
 from config import CLAUDE_MODEL, CLAUDE_MAX_TOKENS
@@ -17,7 +18,6 @@ API_URL = "https://api.anthropic.com/v1/messages"
 
 def _get_headers() -> dict:
     """호출 시점에 API 키를 읽어 헤더 생성"""
-    import os
     return {
         "Content-Type": "application/json",
         "x-api-key": os.environ.get("ANTHROPIC_API_KEY", ""),
