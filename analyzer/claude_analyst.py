@@ -127,15 +127,23 @@ def generate_weekly_summary(signals: list[dict], genre_trends: list[dict], buzz_
 
 
 def analyze_buzz_posts(posts: list[dict]) -> list[dict]:
-    """Community Buzz 포스트별 한글 요약 + 인사이트 + 유형 분류"""
+    """Community Buzz — 유저 목소리에서 신작 기획 아이디어 추출"""
     if not posts:
         return []
 
-    system = """당신은 게임 커뮤니티 동향 분석가입니다.
-Reddit 게임 커뮤니티 포스트를 분석하여:
-1. 유저들의 게임 토론, 추천, 팬심, 경험 공유 등 "유저 관점" 포스트를 높이 평가
-2. 업계 뉴스, 해고, 기업 논란 등 "업계 뉴스" 포스트는 낮게 평가
-3. 각 포스트의 핵심 내용을 한국어로 요약하고 게임 기획 관점의 인사이트를 제공
+    system = """당신은 게임 유저 커뮤니티 분석 전문가입니다.
+RisingWings는 신작 게임을 기획하려는 개발 스튜디오입니다.
+당신의 임무는 Reddit 게임 커뮤니티에서 유저들의 목소리를 분석하여,
+"우리가 어떤 신작을 만들면 좋을지" 아이디어를 얻는 것입니다.
+
+구체적으로:
+- 유저들이 열광하는 게임플레이 요소는 무엇인가?
+- 유저들이 "이런 게임이 있으면 좋겠다"고 말하는 것은?
+- 어떤 장르 조합이나 메커니즘이 유저들 사이에서 뜨겁게 논의되고 있는가?
+- 기존 게임에서 유저들이 불만을 느끼는 지점은? (= 기회)
+
+업계 뉴스, 기업 논란, 해고, 가격 정책 등 "업계 내부 이야기"는 무시하세요.
+오직 유저들이 실제로 플레이하고 토론하고 열광하는 것에만 집중하세요.
 
 반드시 한국어로 응답하세요. JSON 형식으로만 응답하세요."""
 
@@ -154,10 +162,9 @@ Reddit 게임 커뮤니티 포스트를 분석하여:
 각 포스트에 대해 다음 JSON 배열로 응답하세요 (마크다운 코드블록 없이 순수 JSON만):
 [
   {{
-    "summary": "포스트 핵심 내용 한국어 요약 (1~2문장)",
-    "insight": "게임 기획자 관점 인사이트 — 유저가 원하는 것, 시장에서 통하는 것 중심 (1문장)",
-    "type": "user_discussion/fan_love/game_recommendation/industry_news/controversy 중 하나",
-    "relevance": 1~5 (유저 토론/팬심이면 5, 업계 뉴스/논란이면 1)
+    "summary": "유저들이 이 포스트에서 말하고 있는 핵심 내용 (1~2문장)",
+    "insight": "이 토론에서 읽히는 신작 기획 힌트 — 유저가 원하는 게임플레이, 충족되지 않은 니즈, 떠오르는 트렌드 (1문장)",
+    "is_user_voice": true/false (유저의 게임 경험/토론/추천/불만이면 true, 업계 뉴스/논란이면 false)
   }},
   ...
 ]"""
@@ -166,9 +173,8 @@ Reddit 게임 커뮤니티 포스트를 분석하여:
     try:
         cleaned = result.strip().replace("```json", "").replace("```", "").strip()
         analyses = json.loads(cleaned)
-        # relevance 3 이상만 유지 (업계 뉴스/논란 제외)
         for a in analyses:
-            if a.get("relevance", 3) < 3:
+            if not a.get("is_user_voice", True):
                 a["summary"] = ""
                 a["insight"] = ""
         return analyses
