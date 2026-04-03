@@ -4,9 +4,8 @@ from datetime import datetime, timedelta
 # ── API Keys ──
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 
-# ── Google Drive ──
-GDRIVE_FOLDER_ID = os.environ.get("GDRIVE_FOLDER_ID", "")
-GDRIVE_SERVICE_ACCOUNT_JSON = os.environ.get("GDRIVE_SERVICE_ACCOUNT_JSON", "")
+# ── Google Drive (via Google Apps Script) ──
+GAS_WEBHOOK_URL = os.environ.get("GAS_WEBHOOK_URL", "")
 
 # ── Claude API ──
 CLAUDE_MODEL = "claude-sonnet-4-20250514"
