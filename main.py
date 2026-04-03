@@ -10,6 +10,7 @@ import sys
 from datetime import datetime
 
 from collectors.steam import get_top_games_2weeks, collect_genre_games, enrich_games_with_details
+from collectors.reddit_gas import collect_reddit_posts
 from analyzer.signal_detector import (
     load_watchlist, save_watchlist,
     detect_signals, update_watchlist_status,
@@ -73,8 +74,23 @@ def main():
     all_games_list = list(all_games.values())
     logger.info(f"  → 전체 고유: {len(all_games_list)}개")
 
-    # ── Step 2: Signal 감지 ──
-    logger.info("[2/5] Signal 감지...")
+    # ── Step 2: Reddit 수집 (GAS 경유) ──
+    logger.info("[2/6] Reddit 수집...")
+    reddit_posts = collect_reddit_posts()
+
+    buzz_items = []
+    for post in reddit_posts[:10]:
+        buzz_items.append({
+            "source": "Reddit",
+            "title": post.get("title", ""),
+            "url": post.get("url", ""),
+            "description": post.get("selftext", "")[:200],
+            "stats": f"{post.get('upvotes', 0):,} upvotes · {post.get('num_comments', 0):,} comments · r/{post.get('subreddit', '')}",
+        })
+    logger.info(f"  → Community Buzz: {len(buzz_items)}개")
+
+    # ── Step 3: Signal 감지 ──
+    logger.info("[3/6] Signal 감지...")
     watchlist = load_watchlist()
     signals = detect_signals(all_games_list, watchlist)
     logger.info(f"  → {len(signals)}개 신호")
@@ -91,7 +107,7 @@ def main():
                     break
 
     # ── Step 3: Claude API 분석 ──
-    logger.info("[3/5] Claude API 분석...")
+    logger.info("[4/6] Claude API 분석...")
 
     for i, signal in enumerate(signals):
         logger.info(f"  Signal {i+1}/{len(signals)}: {signal['name']}")
@@ -108,7 +124,7 @@ def main():
         genre_watches.append(analysis)
 
     logger.info("  헤더 요약...")
-    weekly_summary = generate_weekly_summary(signals, genre_watches, [])
+    weekly_summary = generate_weekly_summary(signals, genre_watches, buzz_items)
     if not weekly_summary:
         weekly_summary = f"이번 주 {len(signals)}개 신호 감지."
 
@@ -165,20 +181,20 @@ def main():
     save_watchlist(watchlist)
 
     # ── Step 4: HTML 리포트 ──
-    logger.info("[4/5] HTML 리포트 생성...")
+    logger.info("[5/6] HTML 리포트 생성...")
     report_path = generate_report(
         issue_number=issue_number,
         summary=weekly_summary,
         signals=signals,
         trending=trending,
-        buzz_items=[],
+        buzz_items=buzz_items,
         genre_watches=genre_watches,
         watchlist_items=watchlist_items,
         output_path=f"chance_sensor_{datetime.now().strftime('%Y%m%d')}.html",
     )
 
     # ── Step 5: Google Drive ──
-    logger.info("[5/5] Google Drive 업로드...")
+    logger.info("[6/6] Google Drive 업로드...")
     result = upload_report(report_path, issue_number)
     if result.get("url"):
         logger.info(f"  Drive URL: {result['url']}")
