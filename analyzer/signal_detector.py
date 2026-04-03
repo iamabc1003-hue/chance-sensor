@@ -1,27 +1,25 @@
 """
 Signal Detector
 - Steam 데이터에서 급등 신호를 감지
-- 이전 watchlist 대비 변화율 계산
-- Signal Alert 후보 선별
+- Watchlist 관리 (최대 크기 제한)
 """
 
 import json
 import logging
 from datetime import datetime
-from typing import Optional
 
 from config import (
-    SIGNAL_WISHLIST_THRESHOLD_PCT,
     SIGNAL_MAX_ALERTS,
     WATCHLIST_PATH,
-    GENRE_KEYWORDS,
+    MAX_OWNERS_FOR_SIGNAL,
+    WATCHLIST_MAX_SIZE,
 )
+from utils import parse_owners_mid
 
 logger = logging.getLogger(__name__)
 
 
 def load_watchlist() -> dict:
-    """기존 watchlist.json 로드"""
     try:
         with open(WATCHLIST_PATH, "r", encoding="utf-8") as f:
             return json.load(f)
@@ -30,45 +28,50 @@ def load_watchlist() -> dict:
 
 
 def save_watchlist(watchlist: dict):
-    """watchlist.json 저장"""
+    # Watchlist 크기 제한 — 최신 데이터 기준 상위만 유지
+    if len(watchlist) > WATCHLIST_MAX_SIZE * 2:
+        sorted_items = sorted(
+            watchlist.items(),
+            key=lambda x: x[1].get("weekly_data", [{}])[-1].get("date", ""),
+            reverse=True,
+        )
+        watchlist_trimmed = dict(sorted_items[:WATCHLIST_MAX_SIZE * 2])
+        watchlist.clear()
+        watchlist.update(watchlist_trimmed)
+
     with open(WATCHLIST_PATH, "w", encoding="utf-8") as f:
         json.dump(watchlist, f, ensure_ascii=False, indent=2)
 
 
 def classify_genre_tags(steam_tags: dict) -> list[str]:
-    """Steam 태그를 기반으로 장르 해시태그 생성"""
-    tags_lower = [t.lower() for t in steam_tags.keys()]
+    """Steam 태그에서 해시태그 생성"""
+    if not steam_tags or not isinstance(steam_tags, dict):
+        return []
+
     hashtags = set()
-
-    for genre_name, keywords in GENRE_KEYWORDS.items():
-        for kw in keywords:
-            if any(kw in tag for tag in tags_lower):
-                # 장르명에서 해시태그 생성
-                short = genre_name.split("/")[0].strip().replace(" ", "")
-                hashtags.add(f"#{short}")
-                break
-
-    # Steam 태그에서 직접 해시태그 추가
     priority_tags = [
         "Indie", "Early Access", "Free to Play", "Co-op", "Multiplayer",
-        "Singleplayer", "PvP", "PvE", "Open World", "Roguelike",
+        "Singleplayer", "PvP", "PvE", "Roguelike", "Survival",
+        "RPG", "Strategy", "Simulation", "Adventure", "Action",
+        "Shooter", "FPS", "Platformer", "Puzzle",
     ]
     for tag in steam_tags.keys():
         if tag in priority_tags:
             hashtags.add(f"#{tag.replace(' ', '')}")
 
-    return list(hashtags)[:5]  # 최대 5개
+    return list(hashtags)[:5]
 
 
 def detect_signals(current_games: list[dict], watchlist: dict) -> list[dict]:
     """
     급등 신호 감지
-    - 소규모/중규모 게임 중심 (소유자 500만 미만)
-    - 이미 잘 알려진 대형작은 제외
+    - 소유자 500만 미만만 대상
+    - 기존 watchlist 대비 급등 감지 (2주차 이후)
+    - 신규 진입은 Signal에는 포함하되, Watchlist에는 상위 N개만 추가
     """
     signals = []
+    new_entries = []
     today = datetime.now().strftime("%Y-%m-%d")
-    MAX_OWNERS_FOR_SIGNAL = 5_000_000  # 500만 이상은 이미 알려진 게임
 
     for game in current_games:
         appid = str(game.get("appid", ""))
@@ -77,17 +80,16 @@ def detect_signals(current_games: list[dict], watchlist: dict) -> list[dict]:
             continue
 
         owners_str = game.get("owners", "0 .. 0")
-        current_owners = _parse_owners_mid(owners_str)
+        current_owners = parse_owners_mid(owners_str)
 
-        # 대형 기존작 제외
         if current_owners >= MAX_OWNERS_FOR_SIGNAL:
             continue
 
         steam_tags = game.get("tags", {})
         genre_tags = classify_genre_tags(steam_tags)
 
-        # 기존 watchlist에 있는지 확인
         if appid in watchlist:
+            # 기존 추적 게임 — 변화율 계산
             prev = watchlist[appid]
             prev_data = prev.get("weekly_data", [])
 
@@ -98,58 +100,76 @@ def detect_signals(current_games: list[dict], watchlist: dict) -> list[dict]:
                 else:
                     delta_pct = 100 if current_owners > 0 else 0
 
-                if delta_pct >= SIGNAL_WISHLIST_THRESHOLD_PCT:
-                    signals.append({
-                        "appid": appid,
-                        "name": name,
-                        "status": "rising",
-                        "delta_pct": round(delta_pct),
-                        "current_owners": current_owners,
-                        "tags": genre_tags,
-                        "steam_url": game.get("steam_url", f"https://store.steampowered.com/app/{appid}/"),
-                        "details": game,
-                        "weeks_tracked": len(prev_data),
-                    })
+                if delta_pct >= 30:  # 30% 이상 증가 시 Signal
+                    signals.append(_make_signal(appid, name, "rising", round(delta_pct),
+                                                current_owners, genre_tags, game, len(prev_data)))
 
-            # watchlist 업데이트
-            prev["weekly_data"].append({
-                "date": today,
-                "owners_mid": current_owners,
-            })
+            prev["weekly_data"].append({"date": today, "owners_mid": current_owners})
 
         else:
-            # 신규 진입
-            signals.append({
+            # 신규 발견 — 나중에 상위만 watchlist에 추가
+            new_entries.append({
                 "appid": appid,
                 "name": name,
-                "status": "new",
-                "delta_pct": 0,
                 "current_owners": current_owners,
-                "tags": genre_tags,
-                "steam_url": game.get("steam_url", f"https://store.steampowered.com/app/{appid}/"),
-                "details": game,
-                "weeks_tracked": 0,
+                "genre_tags": genre_tags,
+                "game": game,
             })
 
-            # watchlist에 추가
+    # 신규 진입 중 리뷰 긍정률 상위만 Signal + Watchlist에 추가
+    scored_new = []
+    for entry in new_entries:
+        game = entry["game"]
+        pos = game.get("positive", 0)
+        neg = game.get("negative", 0)
+        total = pos + neg
+        ratio = (pos / total * 100) if total > 50 else 0
+        entry["positive_ratio"] = ratio
+        scored_new.append(entry)
+
+    scored_new.sort(key=lambda x: x["positive_ratio"], reverse=True)
+
+    # 상위 Signal 후보만 추가
+    for entry in scored_new[:SIGNAL_MAX_ALERTS * 2]:
+        appid = entry["appid"]
+        signals.append(_make_signal(
+            appid, entry["name"], "new", 0,
+            entry["current_owners"], entry["genre_tags"], entry["game"], 0,
+        ))
+
+    # Watchlist에는 상위만 추가 (폭증 방지)
+    for entry in scored_new[:WATCHLIST_MAX_SIZE]:
+        appid = entry["appid"]
+        if appid not in watchlist:
             watchlist[appid] = {
-                "name": name,
-                "url": game.get("steam_url", f"https://store.steampowered.com/app/{appid}/"),
-                "tags": genre_tags,
+                "name": entry["name"],
+                "url": entry["game"].get("steam_url", f"https://store.steampowered.com/app/{appid}/"),
+                "tags": entry["genre_tags"],
                 "first_detected": today,
-                "weekly_data": [{
-                    "date": today,
-                    "owners_mid": current_owners,
-                }],
+                "weekly_data": [{"date": today, "owners_mid": entry["current_owners"]}],
             }
 
-    # delta_pct 기준 내림차순 정렬, 상위 N개
-    signals.sort(key=lambda x: x["delta_pct"], reverse=True)
+    # Signal 정렬: rising(변화율 높은 순) > new(긍정률 높은 순)
+    signals.sort(key=lambda x: (0 if x["status"] == "rising" else 1, -x["delta_pct"]))
     return signals[:SIGNAL_MAX_ALERTS]
 
 
+def _make_signal(appid, name, status, delta_pct, owners, tags, game, weeks):
+    return {
+        "appid": appid,
+        "name": name,
+        "status": status,
+        "delta_pct": delta_pct,
+        "current_owners": owners,
+        "tags": tags,
+        "steam_url": game.get("steam_url", f"https://store.steampowered.com/app/{appid}/"),
+        "details": game,
+        "weeks_tracked": weeks,
+    }
+
+
 def update_watchlist_status(watchlist: dict) -> list[dict]:
-    """Watchlist 전체 항목의 상태(신규/상승/안정/하락) 판정"""
+    """Watchlist 항목의 주간 상태 판정"""
     items = []
     for appid, data in watchlist.items():
         weekly = data.get("weekly_data", [])
@@ -159,10 +179,7 @@ def update_watchlist_status(watchlist: dict) -> list[dict]:
         else:
             prev = weekly[-2].get("owners_mid", 0)
             curr = weekly[-1].get("owners_mid", 0)
-            if prev > 0:
-                delta_pct = round(((curr - prev) / prev) * 100)
-            else:
-                delta_pct = 0
+            delta_pct = round(((curr - prev) / prev) * 100) if prev > 0 else 0
 
             if delta_pct >= 30:
                 status = "rising"
@@ -182,17 +199,6 @@ def update_watchlist_status(watchlist: dict) -> list[dict]:
             "first_detected": data.get("first_detected", ""),
         })
 
-    # 상태 우선순위: new > rising > stable > declining
     status_order = {"new": 0, "rising": 1, "stable": 2, "declining": 3}
     items.sort(key=lambda x: (status_order.get(x["status"], 9), -x["delta_pct"]))
-    return items[:30]  # 최대 30개만 표시
-
-
-def _parse_owners_mid(owners_str: str) -> int:
-    try:
-        parts = owners_str.replace(",", "").split(" .. ")
-        low = int(parts[0])
-        high = int(parts[1]) if len(parts) > 1 else low
-        return (low + high) // 2
-    except (ValueError, IndexError):
-        return 0
+    return items[:WATCHLIST_MAX_SIZE]

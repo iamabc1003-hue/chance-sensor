@@ -23,34 +23,30 @@ def get_report_period():
 
 # ── Steam 수집 설정 ──
 STEAM_TRENDING_TOP_N = 10
-SIGNAL_WISHLIST_THRESHOLD_PCT = 50
 SIGNAL_MAX_ALERTS = 5
+# Signal/Watchlist 진입 기준: 소유자 500만 미만
+MAX_OWNERS_FOR_SIGNAL = 5_000_000
+# Trending 진입 기준: 소유자 5만~500만, 리뷰 100개 이상
+TRENDING_OWNERS_MIN = 50_000
+TRENDING_OWNERS_MAX = 5_000_000
+TRENDING_MIN_REVIEWS = 100
 
 # ── SteamSpy API ──
 STEAMSPY_BASE_URL = "https://steamspy.com/api.php"
 
+# 장르별 SteamSpy 태그 매핑 (중복 없이 장르 특성에 맞는 태그만)
 STEAMSPY_GENRE_TAGS = {
-    "턴제 RPG / JRPG": ["Turn-Based", "JRPG", "Turn-Based Combat", "Turn-Based Strategy", "Turn-Based Tactics"],
-    "히어로 슈터 / MOBA": ["Hero Shooter", "MOBA"],
-    "생존 크래프트": ["Survival", "Crafting"],
-    "로그라이크 / 오토배틀러": ["Roguelike", "Roguelite", "Roguelike Deckbuilder", "Auto Battler"],
-    "액션 RPG": ["Action RPG", "Hack and Slash", "Souls-like"],
-    "오픈월드": ["Open World"],
-    "택티컬 슈터": ["Tactical", "Extraction Shooter"],
-    "메트로배니아": ["Metroidvania"],
-}
-
-# ── 장르 분류 키워드 매핑 ──
-GENRE_KEYWORDS = {
-    "턴제 RPG / JRPG": ["turn-based", "jrpg", "turn based", "tactical rpg", "strategy rpg"],
-    "히어로 슈터 / MOBA": ["hero shooter", "moba", "team shooter", "overwatch", "deadlock"],
-    "생존 크래프트": ["survival", "crafting", "survival craft", "sandbox survival"],
-    "로그라이크 / 오토배틀러": ["roguelike", "roguelite", "auto battler", "autobattler", "survivors-like"],
-    "액션 RPG": ["action rpg", "arpg", "hack and slash", "souls-like", "soulslike"],
-    "오픈월드": ["open world", "open-world", "sandbox"],
-    "택티컬 슈터": ["tactical shooter", "extraction shooter", "mil-sim"],
-    "메트로배니아": ["metroidvania", "platformer"],
+    "턴제 RPG / JRPG": ["RPG", "Strategy"],
+    "슈터": ["Shooter", "FPS"],
+    "생존 크래프트": ["Survival", "Sandbox"],
+    "로그라이크": ["Roguelike", "Roguelite"],
+    "액션 RPG": ["Adventure"],
+    "시뮬레이션": ["Simulation"],
+    "메트로배니아 / 플랫포머": ["Metroidvania", "Platformer"],
+    "인디": ["Indie"],
 }
 
 # ── Watchlist ──
 WATCHLIST_PATH = "watchlist.json"
+# Watchlist에 동시 추적할 최대 게임 수
+WATCHLIST_MAX_SIZE = 30

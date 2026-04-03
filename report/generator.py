@@ -67,13 +67,25 @@ def _render_signals(signals: list[dict]) -> str:
         rel_class = {"높음": "rel-high", "중간": "rel-mid"}.get(level, "rel-low")
 
         status_tag = ""
-        status = s.get("game_status", "개발중")
-        if status == "Early Access":
-            status_tag = '<span class="card-tag tag-status-ea">Early Access</span>'
-        elif status == "출시":
-            status_tag = '<span class="card-tag tag-status-released">출시</span>'
-        else:
+        # 게임 상태 자동 판정: release_date, categories에서 추출
+        details = s.get("details", {})
+        release_info = details.get("release_date", {})
+        categories = details.get("categories", [])
+        cat_names = categories if isinstance(categories, list) else []
+
+        if release_info.get("coming_soon", False):
+            status = "개발중"
             status_tag = '<span class="card-tag tag-status-dev">개발중</span>'
+        elif "Early Access" in str(cat_names):
+            status = "Early Access"
+            status_tag = '<span class="card-tag tag-status-ea">Early Access</span>'
+        else:
+            release_date_str = release_info.get("date", "")
+            status = "출시"
+            if release_date_str:
+                status_tag = f'<span class="card-tag tag-status-released">{_escape(release_date_str)}</span>'
+            else:
+                status_tag = '<span class="card-tag tag-status-released">출시</span>'
 
         genre_tag = f'<span class="card-tag tag-genre">{_escape(s.get("genre", ""))}</span>' if s.get("genre") else ""
 
