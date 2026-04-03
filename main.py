@@ -3,12 +3,12 @@ Chance Sensor - Main Pipeline
 매주 목요일 오후 5시(KST) 자동 실행
 
 Pipeline:
-1. Steam 데이터 수집
-2. Reddit 데이터 수집
-3. Signal 감지
-4. Claude API 분석
-5. HTML 리포트 생성
-6. Slack 발송
+1. Steam 데이터 수집 (태그별 장르 + top 2weeks)
+2. Signal 감지
+3. Claude API 분석
+4. HTML 리포트 생성
+5. Confluence 발행 (요약 + HTML 첨부)
+6. 첨부 실패 시 Gmail 발송 (fallback)
 """
 
 import json
@@ -17,17 +17,16 @@ import sys
 from datetime import datetime
 
 from collectors.steam import get_top_games_2weeks, collect_genre_games, enrich_games_with_details
-from collectors.reddit_public import RedditCollector
 from analyzer.signal_detector import (
     load_watchlist, save_watchlist,
     detect_signals, update_watchlist_status,
 )
-from analyzer.genre_aggregator import filter_reddit_by_genre
 from analyzer.claude_analyst import (
     analyze_signal, analyze_genre_trend, generate_weekly_summary,
 )
 from report.generator import generate_report
 from confluence_publisher import ConfluencePublisher
+from gmail_sender import send_report_email
 from config import GENRE_KEYWORDS, STEAM_TRENDING_TOP_N
 
 # 로깅 설정
@@ -40,7 +39,6 @@ logger = logging.getLogger("chance-sensor")
 
 
 def get_issue_number() -> int:
-    """이슈 번호 관리 (간단히 파일 기반)"""
     try:
         with open(".issue_number", "r") as f:
             num = int(f.read().strip())
@@ -62,19 +60,17 @@ def main():
     logger.info(f"Issue #{issue_number:03d}")
 
     # ── Step 1: Steam 데이터 수집 ──
-    logger.info("[1/7] Steam 데이터 수집...")
+    logger.info("[1/6] Steam 데이터 수집...")
 
-    # 1a. 최근 2주 인기작 (대형 기존작 제외)
     raw_games = get_top_games_2weeks()
     logger.info(f"  → Top 2weeks (대형작 제외): {len(raw_games)}개")
 
-    # 1b. 장르별 태그 수집
     logger.info("  장르별 태그 수집 시작...")
     genre_game_map = collect_genre_games()
     total_genre_games = sum(len(v) for v in genre_game_map.values())
     logger.info(f"  → 장르별 총 {total_genre_games}개 게임 수집")
 
-    # 1c. 전체 게임 풀 구성 (중복 제거)
+    # 전체 게임 풀 구성 (중복 제거)
     all_games = {}
     for g in raw_games:
         all_games[g["appid"]] = g
@@ -85,70 +81,45 @@ def main():
     all_games_list = list(all_games.values())
     logger.info(f"  → 전체 고유 게임: {len(all_games_list)}개")
 
-    # 1d. 상위 게임 상세정보 보강
+    # 상위 게임 상세정보 보강
     top_for_enrichment = sorted(all_games_list, key=lambda x: _parse_owners_mid(x.get("owners", "0 .. 0")), reverse=True)[:15]
     top_games = enrich_games_with_details(top_for_enrichment, delay=1.5)
     logger.info(f"  → {len(top_games)}개 상세정보 보강 완료")
 
-    # ── Step 2: Reddit 데이터 수집 ──
-    logger.info("[2/7] Reddit 데이터 수집...")
-    reddit = RedditCollector()
-    reddit_posts = reddit.collect_all_subreddits()
-    logger.info(f"  → {len(reddit_posts)}개 포스트 수집")
-
-    # ── Step 3: Signal 감지 ──
-    logger.info("[3/7] Signal 감지...")
+    # ── Step 2: Signal 감지 ──
+    logger.info("[2/6] Signal 감지...")
     watchlist = load_watchlist()
     signals = detect_signals(all_games_list, watchlist)
     logger.info(f"  → {len(signals)}개 신호 감지")
 
-    # ── Step 4: Claude API 분석 ──
-    logger.info("[4/7] Claude API 분석...")
+    # ── Step 3: Claude API 분석 ──
+    logger.info("[3/6] Claude API 분석...")
 
-    # Signal 분석
     for i, signal in enumerate(signals):
         logger.info(f"  Signal 분석 {i+1}/{len(signals)}: {signal['name']}")
-        game_mentions = reddit.search_game_mentions(signal["name"])
-        analysis = analyze_signal(signal["details"], game_mentions)
+        analysis = analyze_signal(signal["details"], [])
         signal.update(analysis)
 
-    # Genre 분석 (태그별 수집 데이터 활용)
     genre_watches = []
     for genre_name, genre_games in genre_game_map.items():
         if not genre_games:
             continue
-
         logger.info(f"  Genre 분석: {genre_name} ({len(genre_games)}개 게임)")
-        genre_reddit = filter_reddit_by_genre(reddit_posts, genre_name)
-        analysis = analyze_genre_trend(genre_name, genre_games, genre_reddit)
+        analysis = analyze_genre_trend(genre_name, genre_games, [])
         analysis["genre_name"] = genre_name
         genre_watches.append(analysis)
 
-    # Community Buzz 구성
-    buzz_items = []
-    for post in reddit_posts[:10]:
-        buzz_items.append({
-            "source": "Reddit",
-            "title": post["title"],
-            "url": post["url"],
-            "description": post.get("selftext", "")[:200],
-            "stats": f"{post['upvotes']:,} upvotes · {post['num_comments']:,} comments · r/{post['subreddit']}",
-        })
-
-    # 헤더 요약 생성
     logger.info("  헤더 요약 생성...")
-    weekly_summary = generate_weekly_summary(signals, genre_watches, buzz_items)
+    weekly_summary = generate_weekly_summary(signals, genre_watches, [])
     if not weekly_summary:
         weekly_summary = f"이번 주 {len(signals)}개 신호 감지. 상세 내용은 리포트 참조."
 
-    # ── Step 5: Trending 데이터 구성 (대형작 제외된 전체 풀에서) ──
+    # ── Step 4: Trending + Watchlist 구성 ──
     trending_pool = sorted(all_games_list, key=lambda x: _parse_owners_mid(x.get("owners", "0 .. 0")), reverse=True)
     trending = []
     for game in trending_pool[:STEAM_TRENDING_TOP_N]:
         tags = game.get("tags", {})
-        genre = ""
-        if isinstance(tags, dict) and tags:
-            genre = list(tags.keys())[0] if tags else ""
+        genre = list(tags.keys())[0] if isinstance(tags, dict) and tags else ""
         trending.append({
             "name": game.get("name", ""),
             "steam_url": game.get("steam_url", f"https://store.steampowered.com/app/{game.get('appid', '')}/"),
@@ -157,30 +128,29 @@ def main():
             "delta_pct": 0,
         })
 
-    # Watchlist 상태 업데이트
     watchlist_items = update_watchlist_status(watchlist)
     save_watchlist(watchlist)
 
-    # ── Step 6: HTML 리포트 생성 (Slack fallback용) ──
-    logger.info("[5/7] HTML 리포트 생성...")
+    # ── Step 5: HTML 리포트 생성 ──
+    logger.info("[4/6] HTML 리포트 생성...")
     report_path = generate_report(
         issue_number=issue_number,
         summary=weekly_summary,
         signals=signals,
         trending=trending,
-        buzz_items=buzz_items,
+        buzz_items=[],
         genre_watches=genre_watches,
         watchlist_items=watchlist_items,
         output_path=f"chance_sensor_{datetime.now().strftime('%Y%m%d')}.html",
     )
 
-    # ── Step 7: Confluence 아카이빙 (네이티브 포맷) ──
-    logger.info("[6/7] Confluence 발행...")
+    # ── Step 6: Confluence 발행 ──
+    logger.info("[5/6] Confluence 발행...")
     report_data = {
         "summary": weekly_summary,
         "signals": signals,
         "trending": trending,
-        "buzz_items": buzz_items,
+        "buzz_items": [],
         "genre_watches": genre_watches,
         "watchlist_items": watchlist_items,
     }
@@ -188,10 +158,20 @@ def main():
     confluence = ConfluencePublisher()
     publish_result = confluence.publish_report(report_data, issue_number, html_path=report_path)
 
-    if publish_result.get("url"):
-        logger.info(f"  Confluence URL: {publish_result['url']}")
+    confluence_url = publish_result.get("url", "")
+    html_attached = publish_result.get("html_attached", False)
+
+    if confluence_url:
+        logger.info(f"  Confluence URL: {confluence_url}")
     else:
         logger.warning("  Confluence 발행 실패")
+
+    # ── Step 7: HTML 첨부 실패 시 Gmail 발송 ──
+    if not html_attached:
+        logger.info("[6/6] Confluence 첨부 실패 → Gmail 발송...")
+        send_report_email(report_path, weekly_summary, issue_number, confluence_url)
+    else:
+        logger.info("[6/6] HTML 첨부 성공, Gmail 발송 생략")
 
     logger.info("=" * 60)
     logger.info("Chance Sensor Weekly Report 생성 완료!")

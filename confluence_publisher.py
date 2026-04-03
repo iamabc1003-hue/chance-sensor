@@ -68,8 +68,10 @@ class ConfluencePublisher:
             result = self._create_page(title, summary_body)
 
         # HTML 첨부파일 업로드
+        attached = False
         if result.get("page_id") and html_path and os.path.exists(html_path):
-            self._attach_file(result["page_id"], html_path)
+            attached = self._attach_file(result["page_id"], html_path)
+        result["html_attached"] = attached
 
         return result
 
@@ -136,7 +138,7 @@ class ConfluencePublisher:
 
         return "\n".join(parts)
 
-    def _attach_file(self, page_id: str, file_path: str):
+    def _attach_file(self, page_id: str, file_path: str) -> bool:
         """Confluence 페이지에 파일 첨부"""
         filename = os.path.basename(file_path)
         try:
@@ -147,14 +149,19 @@ class ConfluencePublisher:
                     headers={"X-Atlassian-Token": "nocheck"},
                     files={"file": (filename, f, "text/html")},
                     data={"comment": "Chance Sensor 상세 리포트 (HTML)"},
-                    timeout=30,
+                    timeout=60,
                 )
+            logger.info(f"첨부 API 응답 코드: {resp.status_code}")
+            logger.info(f"첨부 API 응답 본문: {resp.text[:500]}")
             resp.raise_for_status()
             logger.info(f"HTML 첨부 완료: {filename}")
+            return True
         except Exception as e:
             logger.error(f"첨부파일 업로드 실패: {e}")
             if hasattr(e, 'response') and e.response is not None:
-                logger.error(f"  응답: {e.response.text[:500]}")
+                logger.error(f"  응답 코드: {e.response.status_code}")
+                logger.error(f"  응답 본문: {e.response.text[:500]}")
+            return False
 
     # ── API Methods ──
 

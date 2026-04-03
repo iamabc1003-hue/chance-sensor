@@ -8,6 +8,11 @@ REDDIT_CLIENT_SECRET = os.environ.get("REDDIT_CLIENT_SECRET", "")
 SLACK_BOT_TOKEN = os.environ.get("SLACK_BOT_TOKEN", "")
 SLACK_CHANNEL_ID = os.environ.get("SLACK_CHANNEL_ID", "")
 
+# ── Gmail ──
+GMAIL_SENDER = os.environ.get("GMAIL_SENDER", "")
+GMAIL_APP_PASSWORD = os.environ.get("GMAIL_APP_PASSWORD", "")
+GMAIL_RECIPIENTS = [x.strip() for x in os.environ.get("GMAIL_RECIPIENTS", "").split(",") if x.strip()]
+
 # ── Confluence ──
 CONFLUENCE_BASE_URL = os.environ.get("CONFLUENCE_BASE_URL", "")  # e.g. https://risingwings.atlassian.net
 CONFLUENCE_USER_EMAIL = os.environ.get("CONFLUENCE_USER_EMAIL", "")
