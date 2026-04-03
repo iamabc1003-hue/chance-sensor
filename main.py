@@ -110,10 +110,28 @@ def main():
     if not weekly_summary:
         weekly_summary = f"이번 주 {len(signals)}개 신호 감지. 상세 내용은 리포트 참조."
 
-    # Trending + Watchlist 구성
-    trending = []
-    for game in top_sorted[:STEAM_TRENDING_TOP_N]:
-        # 장르: Steam Store genres 우선, 없으면 SteamSpy tags 첫 번째 키
+    # Trending: 복합 점수 = 긍정리뷰율 + 소규모 가산점 (성장률은 2주차부터)
+    # 소유자 5만~500만 범위의 게임만 대상
+    trending_candidates = []
+    for game in all_games_list:
+        owners = _parse_owners_mid(game.get("owners", "0 .. 0"))
+        if owners < 50_000 or owners >= 5_000_000:
+            continue
+
+        pos = game.get("positive", 0)
+        neg = game.get("negative", 0)
+        total_reviews = pos + neg
+        if total_reviews < 100:  # 리뷰 100개 미만은 제외
+            continue
+
+        positive_ratio = pos / total_reviews * 100
+
+        # 복합 점수: 긍정리뷰율(0~100) + 소규모 가산점(소유자 적을수록 높음)
+        # 소규모 가산: 50만 미만이면 +20, 100만 미만이면 +10
+        small_bonus = 20 if owners < 500_000 else (10 if owners < 1_000_000 else 0)
+        trending_score = positive_ratio + small_bonus
+
+        # 장르 표시
         genres = game.get("genres", [])
         tags = game.get("tags", {})
         if genres:
@@ -122,13 +140,19 @@ def main():
             genre = list(tags.keys())[0]
         else:
             genre = ""
-        trending.append({
+
+        trending_candidates.append({
             "name": game.get("name", ""),
             "steam_url": game.get("steam_url", f"https://store.steampowered.com/app/{game.get('appid', '')}/"),
             "genre": genre,
-            "owners_mid": _parse_owners_mid(game.get("owners", "0 .. 0")),
+            "owners_mid": owners,
+            "positive_ratio": round(positive_ratio, 1),
+            "trending_score": round(trending_score, 1),
             "delta_pct": 0,
         })
+
+    trending_candidates.sort(key=lambda x: x["trending_score"], reverse=True)
+    trending = trending_candidates[:STEAM_TRENDING_TOP_N]
 
     watchlist_items = update_watchlist_status(watchlist)
     save_watchlist(watchlist)
