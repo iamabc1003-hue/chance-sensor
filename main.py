@@ -87,6 +87,12 @@ def main():
 
     buzz_items = []
     for i, post in enumerate(reddit_posts[:10]):
+        analysis = buzz_analyses[i] if i < len(buzz_analyses) else {}
+
+        # AI가 업계 뉴스/논란으로 판정한 포스트는 제외
+        if not analysis.get("summary"):
+            continue
+
         upvotes = post.get("upvotes", 0)
         comments = post.get("num_comments", 0)
         sub = post.get("subreddit", "")
@@ -94,9 +100,6 @@ def main():
             stats = f"{upvotes:,} upvotes · {comments:,} comments · r/{sub}"
         else:
             stats = f"r/{sub} · Top this week"
-
-        # AI 요약 매칭
-        analysis = buzz_analyses[i] if i < len(buzz_analyses) else {}
 
         buzz_items.append({
             "source": "Reddit",
@@ -107,7 +110,7 @@ def main():
             "summary": analysis.get("summary", ""),
             "insight": analysis.get("insight", ""),
         })
-    logger.info(f"  → Community Buzz: {len(buzz_items)}개")
+    logger.info(f"  → Community Buzz: {len(buzz_items)}개 (유저 토론 중심 필터링)")
 
     # ── Step 3: Signal 감지 ──
     logger.info("[3/6] Signal 감지...")
