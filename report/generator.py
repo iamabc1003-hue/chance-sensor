@@ -143,16 +143,26 @@ def _render_trending(trending: list[dict]) -> str:
 
 
 def _render_buzz(buzz_items: list[dict]) -> str:
-    """Community Buzz 렌더링"""
+    """Community Buzz 렌더링 — AI 요약 + 원문"""
     items = []
     for b in buzz_items:
         source = _escape(b.get("source", "Reddit"))
+        summary = b.get("summary", "")
+        insight = b.get("insight", "")
+
+        # AI 요약 블록
+        ai_block = ""
+        if summary:
+            ai_block = f'<div class="buzz-summary">{_escape(summary)}</div>'
+        if insight:
+            ai_block += f'<div class="buzz-insight">💡 {_escape(insight)}</div>'
+
         items.append(f'''
     <div class="buzz-item">
       <span class="buzz-source">{source}</span>
       <div class="buzz-content">
+        {ai_block}
         <div class="buzz-title"><a href="{b.get("url", "#")}" target="_blank">{_escape(b.get("title", ""))}</a></div>
-        <div class="buzz-desc">{_escape(b.get("description", ""))}</div>
         <div class="buzz-stats">{_escape(b.get("stats", ""))}</div>
       </div>
     </div>''')
@@ -340,6 +350,8 @@ body {{ font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: v
 .buzz-title a:hover {{ color: var(--accent-blue); }}
 .buzz-title a::after {{ content: ' ↗'; font-size: 10px; color: var(--text-muted); }}
 .buzz-desc {{ font-size: 12px; color: var(--text-dim); line-height: 1.5; }}
+.buzz-summary {{ font-size: 13px; color: var(--text); font-weight: 500; margin-bottom: 6px; line-height: 1.5; }}
+.buzz-insight {{ font-size: 12px; color: var(--accent-gold); margin-bottom: 8px; padding: 4px 8px; background: var(--accent-gold-dim); border-radius: var(--radius-sm); line-height: 1.4; }}
 .buzz-stats {{ font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-muted); margin-top: 4px; }}
 .genre-list {{ display: flex; flex-direction: column; gap: 10px; }}
 .genre-card {{ background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }}

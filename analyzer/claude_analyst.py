@@ -124,3 +124,43 @@ def generate_weekly_summary(signals: list[dict], genre_trends: list[dict], buzz_
 이번 주 핵심을 1~2문장으로 요약해주세요."""
 
     return _call_claude(system, user).strip()
+
+
+def analyze_buzz_posts(posts: list[dict]) -> list[dict]:
+    """Community Buzz 포스트별 한글 요약 + 인사이트 생성"""
+    if not posts:
+        return []
+
+    system = """당신은 게임 업계 커뮤니티 동향 분석가입니다.
+Reddit 게임 커뮤니티 포스트의 핵심 내용을 한국어로 요약하고, 
+게임 개발사 관점에서의 인사이트를 제공합니다.
+반드시 한국어로 응답하세요. JSON 형식으로만 응답하세요."""
+
+    posts_data = []
+    for p in posts[:10]:
+        posts_data.append({
+            "subreddit": p.get("subreddit", ""),
+            "title": p.get("title", ""),
+            "selftext": p.get("selftext", "")[:300],
+        })
+
+    user = f"""다음 Reddit 인기 포스트들을 각각 분석해주세요:
+
+{json.dumps(posts_data, ensure_ascii=False, indent=2)}
+
+각 포스트에 대해 다음 JSON 배열로 응답하세요 (마크다운 코드블록 없이 순수 JSON만):
+[
+  {{
+    "summary": "포스트 핵심 내용 한국어 요약 (1~2문장)",
+    "insight": "게임 개발사 관점 인사이트 (1문장)"
+  }},
+  ...
+]"""
+
+    result = _call_claude(system, user)
+    try:
+        cleaned = result.strip().replace("```json", "").replace("```", "").strip()
+        return json.loads(cleaned)
+    except json.JSONDecodeError:
+        logger.error(f"Buzz 분석 JSON 파싱 실패: {result[:200]}")
+        return []

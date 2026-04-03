@@ -17,7 +17,7 @@ from analyzer.signal_detector import (
     detect_signals, update_watchlist_status,
 )
 from analyzer.claude_analyst import (
-    analyze_signal, analyze_genre_trend, generate_weekly_summary,
+    analyze_signal, analyze_genre_trend, generate_weekly_summary, analyze_buzz_posts,
 )
 from report.generator import generate_report
 from gdrive_uploader import upload_report
@@ -79,8 +79,14 @@ def main():
     logger.info("[2/6] Reddit 수집...")
     reddit_posts = collect_reddit_posts()
 
+    # Reddit 포스트 AI 요약
+    buzz_analyses = []
+    if reddit_posts:
+        logger.info(f"  Reddit {len(reddit_posts[:10])}개 포스트 AI 요약...")
+        buzz_analyses = analyze_buzz_posts(reddit_posts[:10])
+
     buzz_items = []
-    for post in reddit_posts[:10]:
+    for i, post in enumerate(reddit_posts[:10]):
         upvotes = post.get("upvotes", 0)
         comments = post.get("num_comments", 0)
         sub = post.get("subreddit", "")
@@ -88,12 +94,18 @@ def main():
             stats = f"{upvotes:,} upvotes · {comments:,} comments · r/{sub}"
         else:
             stats = f"r/{sub} · Top this week"
+
+        # AI 요약 매칭
+        analysis = buzz_analyses[i] if i < len(buzz_analyses) else {}
+
         buzz_items.append({
             "source": "Reddit",
             "title": post.get("title", ""),
             "url": post.get("url", ""),
             "description": post.get("selftext", "")[:200],
             "stats": stats,
+            "summary": analysis.get("summary", ""),
+            "insight": analysis.get("insight", ""),
         })
     logger.info(f"  → Community Buzz: {len(buzz_items)}개")
 
