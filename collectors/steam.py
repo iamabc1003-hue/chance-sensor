@@ -30,15 +30,22 @@ def get_top_games_2weeks() -> list[dict]:
         data = resp.json()
 
         games = []
+        skipped = []
         for appid, info in data.items():
-            owners_mid = _parse_owners_mid(info.get("owners", "0 .. 0"))
-            # 초대형 기존작 제외
+            owners_raw = info.get("owners", "0 .. 0")
+            owners_mid = _parse_owners_mid(owners_raw)
             if owners_mid >= MEGA_TITLE_THRESHOLD:
+                skipped.append(f"{info.get('name', '')}({owners_raw})")
                 continue
-
             games.append(_parse_steamspy_game(appid, info))
 
+        if skipped:
+            logger.info(f"  대형작 제외 {len(skipped)}개: {', '.join(skipped[:5])}...")
+
         games.sort(key=lambda x: _parse_owners_mid(x["owners"]), reverse=True)
+        # 상위 5개 로그
+        for g in games[:5]:
+            logger.info(f"    포함: {g['name']} (owners: {g['owners']})")
         return games
 
     except Exception as e:

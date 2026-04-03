@@ -110,24 +110,30 @@ def main():
     if not weekly_summary:
         weekly_summary = f"이번 주 {len(signals)}개 신호 감지. 상세 내용은 리포트 참조."
 
-    # Trending: 복합 점수 = 긍정리뷰율 + 소규모 가산점 (성장률은 2주차부터)
-    # 소유자 5만~500만 범위의 게임만 대상
+    # Trending: 복합 점수 = 긍정리뷰율 + 소규모 가산점
+    # 소유자 5만~500만 범위, 리뷰 100개 이상
     trending_candidates = []
+    skipped_big = 0
+    skipped_small = 0
+    skipped_reviews = 0
+
     for game in all_games_list:
         owners = _parse_owners_mid(game.get("owners", "0 .. 0"))
-        if owners < 50_000 or owners >= 5_000_000:
+        if owners >= 5_000_000:
+            skipped_big += 1
+            continue
+        if owners < 50_000:
+            skipped_small += 1
             continue
 
         pos = game.get("positive", 0)
         neg = game.get("negative", 0)
         total_reviews = pos + neg
-        if total_reviews < 100:  # 리뷰 100개 미만은 제외
+        if total_reviews < 100:
+            skipped_reviews += 1
             continue
 
         positive_ratio = pos / total_reviews * 100
-
-        # 복합 점수: 긍정리뷰율(0~100) + 소규모 가산점(소유자 적을수록 높음)
-        # 소규모 가산: 50만 미만이면 +20, 100만 미만이면 +10
         small_bonus = 20 if owners < 500_000 else (10 if owners < 1_000_000 else 0)
         trending_score = positive_ratio + small_bonus
 
@@ -150,6 +156,10 @@ def main():
             "trending_score": round(trending_score, 1),
             "delta_pct": 0,
         })
+
+    logger.info(f"  Trending 필터: 대형작 제외 {skipped_big}, 소규모 제외 {skipped_small}, 리뷰부족 제외 {skipped_reviews}, 후보 {len(trending_candidates)}개")
+    if trending_candidates:
+        logger.info(f"  Trending 상위 3: {[(t['name'], t['owners_mid'], t['trending_score']) for t in sorted(trending_candidates, key=lambda x: x['trending_score'], reverse=True)[:3]]}")
 
     trending_candidates.sort(key=lambda x: x["trending_score"], reverse=True)
     trending = trending_candidates[:STEAM_TRENDING_TOP_N]
