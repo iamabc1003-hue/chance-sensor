@@ -63,11 +63,13 @@ def classify_genre_tags(steam_tags: dict) -> list[str]:
 def detect_signals(current_games: list[dict], watchlist: dict) -> list[dict]:
     """
     급등 신호 감지
+    - 소규모/중규모 게임 중심 (소유자 2000만 미만)
     - 이전 watchlist에 없는 신규 진입 게임
     - 기존 추적 게임 중 지표 급등 게임
     """
     signals = []
     today = datetime.now().strftime("%Y-%m-%d")
+    MAX_OWNERS_FOR_SIGNAL = 20_000_000
 
     for game in current_games:
         appid = str(game.get("appid", ""))
@@ -77,6 +79,11 @@ def detect_signals(current_games: list[dict], watchlist: dict) -> list[dict]:
 
         owners_str = game.get("owners", "0 .. 0")
         current_owners = _parse_owners_mid(owners_str)
+
+        # 대형 기존작 제외
+        if current_owners >= MAX_OWNERS_FOR_SIGNAL:
+            continue
+
         steam_tags = game.get("tags", {})
         genre_tags = classify_genre_tags(steam_tags)
 

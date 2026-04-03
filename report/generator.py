@@ -62,7 +62,7 @@ def _render_signals(signals: list[dict]) -> str:
     """Signal Alert 카드 렌더링"""
     cards = []
     for s in signals:
-        level = s.get("relevance_level", "낮음")
+        level = s.get("signal_level", "낮음")
         alert_class = {"높음": "alert-high", "중간": "alert-mid"}.get(level, "alert-low")
         rel_class = {"높음": "rel-high", "중간": "rel-mid"}.get(level, "rel-low")
 
@@ -90,14 +90,14 @@ def _render_signals(signals: list[dict]) -> str:
           <div class="card-signal-text">{s.get("signal_text", "")}</div>
         </div>
         <div class="card-right">
-          <span class="relevance-badge {rel_class}">관련도 {level}</span>
+          <span class="relevance-badge {rel_class}">신호 {level}</span>
           <span class="expand-icon">▼</span>
         </div>
       </div>
       <div class="card-detail">
         <div class="detail-text">
           <strong>왜 신호인가:</strong> {s.get("why_signal", "")}<br><br>
-          <strong>Aegis 관련도:</strong> {s.get("aegis_relevance", "")}
+          <strong>신작 기획 참고:</strong> {s.get("market_value", "")}
         </div>
         <div class="detail-links">
           <a href="{s.get("steam_url", "#")}" class="detail-link" target="_blank">Steam 페이지</a>
@@ -440,7 +440,7 @@ body {{ font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: v
 
   <div class="footer">
     <strong>데이터 소스:</strong> Steam API, SteamSpy, Reddit API<br>
-    <strong>AI 분석:</strong> Claude API (Sonnet 4.6) — 요약 생성, 장르 트렌드 분석, RisingWings 관련도 판정<br>
+    <strong>AI 분석:</strong> Claude API (Sonnet 4.6) — 요약 생성, 장르 트렌드 분석, 시장 신호 판정<br>
     <strong>면책:</strong> 본 리포트의 수치는 공개 데이터 기반 추정치이며, 투자 판단의 근거로 사용될 수 없음
   </div>
 </div>

@@ -47,7 +47,7 @@ def get_top_games_2weeks() -> list[dict]:
 
 
 def get_games_by_tag(tag: str) -> list[dict]:
-    """SteamSpy 태그별 게임 수집 (필터 없이 전체)"""
+    """SteamSpy 태그별 게임 수집"""
     try:
         resp = requests.get(
             STEAMSPY_BASE_URL,
@@ -57,15 +57,26 @@ def get_games_by_tag(tag: str) -> list[dict]:
         resp.raise_for_status()
         data = resp.json()
 
+        # SteamSpy가 빈 응답이나 에러를 반환하는 경우 로깅
+        if not data or not isinstance(data, dict):
+            logger.warning(f"SteamSpy tag '{tag}': 빈 응답 또는 비정상 형식")
+            logger.warning(f"  응답 타입: {type(data)}, 길이: {len(str(data)[:200])}")
+            return []
+
         games = []
         for appid, info in data.items():
-            games.append(_parse_steamspy_game(appid, info))
+            if isinstance(info, dict) and info.get("name"):
+                games.append(_parse_steamspy_game(appid, info))
 
+        logger.info(f"    → '{tag}': {len(games)}개 게임 수집")
         games.sort(key=lambda x: _parse_owners_mid(x["owners"]), reverse=True)
         return games
 
     except Exception as e:
         logger.error(f"SteamSpy tag '{tag}' 수집 실패: {e}")
+        if hasattr(e, 'response') and e.response is not None:
+            logger.error(f"  응답 코드: {e.response.status_code}")
+            logger.error(f"  응답 본문: {e.response.text[:300]}")
         return []
 
 
