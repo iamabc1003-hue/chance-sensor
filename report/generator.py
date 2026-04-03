@@ -17,6 +17,7 @@ def generate_report(
     buzz_items: list[dict],
     genre_watches: list[dict],
     watchlist_items: list[dict],
+    rising_items: list[dict] = None,
     output_path: str = "report.html",
 ):
     """전체 HTML 리포트 생성"""
@@ -30,6 +31,7 @@ def generate_report(
     buzz_html = _render_buzz(buzz_items)
     genre_html = _render_genre_watches(genre_watches)
     watchlist_html = _render_watchlist(watchlist_items)
+    rising_html = _render_rising(rising_items or [])
 
     html = TEMPLATE.format(
         issue_number=f"{issue_number:03d}",
@@ -44,6 +46,8 @@ def generate_report(
         genre_html=genre_html,
         watchlist_count=len(watchlist_items),
         watchlist_html=watchlist_html,
+        rising_count=len(rising_items or []),
+        rising_html=rising_html,
     )
 
     with open(output_path, "w", encoding="utf-8") as f:
@@ -127,6 +131,9 @@ def _render_trending(trending: list[dict]) -> str:
         pos_ratio = t.get("positive_ratio", 0)
         score = t.get("trending_score", 0)
         total_reviews = t.get("total_reviews", 0)
+        delta = t.get("delta_pct", 0)
+        delta_str = f"▲ {delta}%" if delta > 0 else f"▼ {abs(delta)}%" if delta < 0 else "—"
+        delta_style = "color: var(--accent-green);" if delta > 0 else "color: var(--accent-fire);" if delta < 0 else "color: var(--text-muted);"
 
         rows.append(f'''
         <tr>
@@ -136,6 +143,7 @@ def _render_trending(trending: list[dict]) -> str:
           <td class="trending-metric">{_format_number(t.get("owners_mid", 0))}</td>
           <td class="trending-metric">{_format_number(total_reviews)}</td>
           <td class="trending-metric">{pos_ratio}%</td>
+          <td class="trending-metric" style="{delta_style}">{delta_str}</td>
           <td class="trending-metric" style="color: var(--accent-gold);">{score}</td>
         </tr>''')
 
@@ -252,7 +260,31 @@ def _render_watchlist(items: list[dict]) -> str:
     return "\n".join(rows)
 
 
-def _format_number(n: int) -> str:
+def _render_rising(items: list[dict]) -> str:
+    """📡 Rising Signal — 주간 성장률 상위 게임"""
+    if not items:
+        return '<div style="color: var(--text-muted); font-size: 13px; padding: 12px 0;">2주차 이후 성장률 데이터가 축적되면 자동으로 표시됩니다.</div>'
+
+    rows = []
+    for i, w in enumerate(items, 1):
+        delta = w.get("delta_pct", 0)
+        weeks = w.get("weeks_tracked", 0)
+        tags_html = " ".join(
+            f'<span class="watchlist-tag">{_escape(t)}</span>' for t in w.get("tags", [])
+        )
+
+        rows.append(f'''
+      <div class="rising-item">
+        <span class="rising-rank">{i}</span>
+        <div class="rising-info">
+          <div class="rising-name"><a href="{w.get("url", "#")}" target="_blank">{_escape(w.get("name", ""))}</a></div>
+          <div class="rising-tags">{tags_html}</div>
+        </div>
+        <div class="rising-delta">▲ {delta}%</div>
+        <span class="rising-weeks">{weeks}주차</span>
+      </div>''')
+
+    return "\n".join(rows)
     """숫자 포맷: 1234567 → 1.2M, 12345 → 12.3K"""
     if n >= 1_000_000:
         return f"{n / 1_000_000:.1f}M"
@@ -378,6 +410,16 @@ body {{ font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: v
 .genre-ref-links {{ display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }}
 .genre-ref-link {{ font-size: 11px; color: var(--accent-blue); text-decoration: none; padding: 4px 10px; border: 1px solid var(--accent-blue-dim); border-radius: 4px; }}
 .genre-ref-link:hover {{ background: var(--accent-blue-dim); }}
+.rising-item {{ display: flex; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); gap: 12px; font-size: 13px; }}
+.rising-item:last-child {{ border-bottom: none; }}
+.rising-rank {{ font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700; color: var(--accent-fire); min-width: 24px; text-align: center; }}
+.rising-info {{ flex: 1; }}
+.rising-name {{ font-weight: 500; }}
+.rising-name a {{ color: var(--text); text-decoration: none; }}
+.rising-name a:hover {{ color: var(--accent-blue); }}
+.rising-tags {{ margin-top: 2px; }}
+.rising-delta {{ font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--accent-green); font-size: 14px; }}
+.rising-weeks {{ font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-muted); min-width: 40px; text-align: right; }}
 .watchlist-item {{ display: flex; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--border); gap: 14px; font-size: 13px; }}
 .watchlist-item:last-child {{ border-bottom: none; }}
 .watchlist-status {{ width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }}
@@ -428,7 +470,7 @@ body {{ font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: v
       <div class="section-title">Steam Trending</div>
     </div>
     <table class="trending-table">
-      <thead><tr><th>#</th><th>게임명</th><th>장르</th><th style="text-align:right">소유자</th><th style="text-align:right">리뷰</th><th style="text-align:right">긍정률</th><th style="text-align:right">점수</th></tr></thead>
+      <thead><tr><th>#</th><th>게임명</th><th>장르</th><th style="text-align:right">소유자</th><th style="text-align:right">리뷰</th><th style="text-align:right">긍정률</th><th style="text-align:right">변동</th><th style="text-align:right">점수</th></tr></thead>
       <tbody>{trending_html}</tbody>
     </table>
   </div>
@@ -450,6 +492,17 @@ body {{ font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: v
     </div>
     <div class="genre-list">
       {genre_html}
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">📡</div>
+      <div class="section-title">Rising Signal</div>
+      <div class="section-count">주간 성장률 상위 {rising_count}건</div>
+    </div>
+    <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; padding: 8px 16px;">
+      {rising_html}
     </div>
   </div>
 

@@ -183,15 +183,26 @@ def main():
         tags = game.get("tags", {})
         genre = list(tags.keys())[0] if isinstance(tags, dict) and tags else ""
 
+        appid_str = str(game.get("appid", ""))
+        # watchlist에서 성장률 매칭
+        delta = 0
+        if appid_str in watchlist:
+            wd = watchlist[appid_str].get("weekly_data", [])
+            if len(wd) >= 2:
+                prev_o = wd[-2].get("owners_mid", 0)
+                curr_o = wd[-1].get("owners_mid", 0)
+                if prev_o > 0:
+                    delta = round(((curr_o - prev_o) / prev_o) * 100)
+
         trending_candidates.append({
             "name": game.get("name", ""),
-            "steam_url": f"https://store.steampowered.com/app/{game.get('appid', '')}/",
+            "steam_url": f"https://store.steampowered.com/app/{appid_str}/",
             "genre": genre,
             "owners_mid": owners,
             "positive_ratio": round(raw_ratio, 1),
             "trending_score": round(score, 1),
             "total_reviews": total_reviews,
-            "delta_pct": 0,
+            "delta_pct": delta,
         })
 
     trending_candidates.sort(key=lambda x: x["trending_score"], reverse=True)
@@ -201,6 +212,13 @@ def main():
     # Watchlist
     watchlist_items = update_watchlist_status(watchlist)
     save_watchlist(watchlist)
+
+    # Rising Signal: watchlist에서 주간 성장률 상위 (2주차 이상 추적 게임만)
+    rising_items = [w for w in watchlist_items if w.get("weeks_tracked", 0) >= 2 and w.get("delta_pct", 0) > 0]
+    rising_items.sort(key=lambda x: x["delta_pct"], reverse=True)
+    rising_items = rising_items[:5]
+    if rising_items:
+        logger.info(f"  📡 Rising Signal: {len(rising_items)}개 (성장률 상위)")
 
     # ── Step 5: HTML 리포트 ──
     logger.info("[5/6] HTML 리포트 생성...")
@@ -212,6 +230,7 @@ def main():
         buzz_items=buzz_items,
         genre_watches=genre_watches,
         watchlist_items=watchlist_items,
+        rising_items=rising_items,
         output_path=f"chance_sensor_{datetime.now().strftime('%Y%m%d')}.html",
     )
 
