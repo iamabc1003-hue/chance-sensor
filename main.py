@@ -112,7 +112,11 @@ def main():
     if not weekly_summary:
         weekly_summary = f"이번 주 {len(signals)}개 신호 감지."
 
-    # ── Trending: 소규모 + 높은 긍정률 복합 점수 ──
+    # ── Trending: 복합 점수 (베이지안 긍정률 + 리뷰수 + 소규모 가산) ──
+    # 베이지안 보정: 리뷰 적으면 평균(75%)으로 수렴, 많으면 실제 긍정률 반영
+    PRIOR_RATIO = 75.0  # 사전 평균 긍정률
+    PRIOR_WEIGHT = 100  # 사전 가중치 (리뷰 100개 수준에서 반반 영향)
+
     trending_candidates = []
     for game in all_games_list:
         owners = parse_owners_mid(game.get("owners", "0 .. 0"))
@@ -125,9 +129,18 @@ def main():
         if total_reviews < TRENDING_MIN_REVIEWS:
             continue
 
-        ratio = pos / total_reviews * 100
-        bonus = 20 if owners < 500_000 else (10 if owners < 1_000_000 else 0)
-        score = ratio + bonus
+        # 베이지안 보정 긍정률: 리뷰 적으면 75%로 수렴
+        raw_ratio = pos / total_reviews * 100
+        bayesian_ratio = (pos + PRIOR_WEIGHT * PRIOR_RATIO / 100) / (total_reviews + PRIOR_WEIGHT) * 100
+
+        # 리뷰수 가산: log 스케일, 리뷰 1000개 → +10, 5000개 → +15, 10000개 → +17
+        import math
+        review_bonus = min(math.log10(max(total_reviews, 1)) * 5, 20)
+
+        # 소규모 가산: 소유자 적을수록 "숨은 보석" 가능성
+        small_bonus = 15 if owners < 300_000 else (8 if owners < 1_000_000 else 0)
+
+        score = bayesian_ratio + review_bonus + small_bonus
 
         tags = game.get("tags", {})
         genre = list(tags.keys())[0] if isinstance(tags, dict) and tags else ""
@@ -137,8 +150,9 @@ def main():
             "steam_url": f"https://store.steampowered.com/app/{game.get('appid', '')}/",
             "genre": genre,
             "owners_mid": owners,
-            "positive_ratio": round(ratio, 1),
+            "positive_ratio": round(raw_ratio, 1),
             "trending_score": round(score, 1),
+            "total_reviews": total_reviews,
             "delta_pct": 0,
         })
 

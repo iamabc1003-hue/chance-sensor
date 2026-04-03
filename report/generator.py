@@ -126,6 +126,7 @@ def _render_trending(trending: list[dict]) -> str:
     for i, t in enumerate(trending, 1):
         pos_ratio = t.get("positive_ratio", 0)
         score = t.get("trending_score", 0)
+        total_reviews = t.get("total_reviews", 0)
 
         rows.append(f'''
         <tr>
@@ -133,6 +134,7 @@ def _render_trending(trending: list[dict]) -> str:
           <td class="trending-name"><a href="{t.get("steam_url", "#")}" target="_blank">{_escape(t.get("name", ""))}</a></td>
           <td class="trending-genre">{_escape(t.get("genre", ""))}</td>
           <td class="trending-metric">{_format_number(t.get("owners_mid", 0))}</td>
+          <td class="trending-metric">{_format_number(total_reviews)}</td>
           <td class="trending-metric">{pos_ratio}%</td>
           <td class="trending-metric" style="color: var(--accent-gold);">{score}</td>
         </tr>''')
@@ -414,7 +416,7 @@ body {{ font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: v
       <div class="section-title">Steam Trending</div>
     </div>
     <table class="trending-table">
-      <thead><tr><th>#</th><th>게임명</th><th>장르</th><th style="text-align:right">소유자</th><th style="text-align:right">긍정률</th><th style="text-align:right">점수</th></tr></thead>
+      <thead><tr><th>#</th><th>게임명</th><th>장르</th><th style="text-align:right">소유자</th><th style="text-align:right">리뷰</th><th style="text-align:right">긍정률</th><th style="text-align:right">점수</th></tr></thead>
       <tbody>{trending_html}</tbody>
     </table>
   </div>

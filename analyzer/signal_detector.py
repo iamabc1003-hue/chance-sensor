@@ -116,18 +116,29 @@ def detect_signals(current_games: list[dict], watchlist: dict) -> list[dict]:
                 "game": game,
             })
 
-    # 신규 진입 중 리뷰 긍정률 상위만 Signal + Watchlist에 추가
+    # 신규 진입 중 복합 점수 상위만 Signal + Watchlist에 추가
+    # 베이지안 보정으로 리뷰 적은 게임의 과대평가 방지
+    import math
+    PRIOR_RATIO = 75.0
+    PRIOR_WEIGHT = 100
+
     scored_new = []
     for entry in new_entries:
         game = entry["game"]
         pos = game.get("positive", 0)
         neg = game.get("negative", 0)
         total = pos + neg
-        ratio = (pos / total * 100) if total > 50 else 0
-        entry["positive_ratio"] = ratio
+        if total < 50:  # 리뷰 50개 미만은 제외
+            continue
+
+        raw_ratio = pos / total * 100
+        bayesian = (pos + PRIOR_WEIGHT * PRIOR_RATIO / 100) / (total + PRIOR_WEIGHT) * 100
+        review_bonus = min(math.log10(max(total, 1)) * 5, 20)
+        entry["score"] = bayesian + review_bonus
+        entry["positive_ratio"] = raw_ratio
         scored_new.append(entry)
 
-    scored_new.sort(key=lambda x: x["positive_ratio"], reverse=True)
+    scored_new.sort(key=lambda x: x["score"], reverse=True)
 
     # 상위 Signal 후보만 추가
     for entry in scored_new[:SIGNAL_MAX_ALERTS * 2]:
