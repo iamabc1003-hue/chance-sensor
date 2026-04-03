@@ -2,8 +2,8 @@ name: Chance Sensor Weekly Report
 
 on:
   schedule:
-    # 매주 목요일 오후 5시 KST = UTC 08:00 Thursday
-    - cron: '0 8 * * 4'
+    # 매주 월요일 오전 10시 KST = UTC 01:00 Monday
+    - cron: '0 1 * * 1'
   workflow_dispatch: # 수동 실행 가능
 
 jobs:
