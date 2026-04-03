@@ -12,6 +12,7 @@ from datetime import datetime
 
 from collectors.steam import get_top_games_2weeks, collect_genre_games, enrich_games_with_details
 from collectors.reddit_gas import collect_reddit_posts
+from collectors.wishlist_gas import collect_wishlist_trending
 from analyzer.signal_detector import (
     load_watchlist, save_watchlist,
     detect_signals, update_watchlist_status,
@@ -213,12 +214,18 @@ def main():
     watchlist_items = update_watchlist_status(watchlist)
     save_watchlist(watchlist)
 
-    # Rising Signal: watchlist에서 주간 성장률 상위 (2주차 이상 추적 게임만)
+    # Rising Signal: watchlist 성장률 상위 + Steam Wishlist Trending
     rising_items = [w for w in watchlist_items if w.get("weeks_tracked", 0) >= 2 and w.get("delta_pct", 0) > 0]
     rising_items.sort(key=lambda x: x["delta_pct"], reverse=True)
     rising_items = rising_items[:5]
     if rising_items:
-        logger.info(f"  📡 Rising Signal: {len(rising_items)}개 (성장률 상위)")
+        logger.info(f"  📡 Rising Signal (성장률): {len(rising_items)}개")
+
+    # Steam Wishlist Trending (인기 출시 예정)
+    logger.info("  Wishlist Trending 수집...")
+    wishlist_games = collect_wishlist_trending()
+    if wishlist_games:
+        logger.info(f"  📡 Wishlist Trending: {len(wishlist_games)}개")
 
     # ── Step 5: HTML 리포트 ──
     logger.info("[5/6] HTML 리포트 생성...")
@@ -231,6 +238,7 @@ def main():
         genre_watches=genre_watches,
         watchlist_items=watchlist_items,
         rising_items=rising_items,
+        wishlist_games=wishlist_games,
         output_path=f"chance_sensor_{datetime.now().strftime('%Y%m%d')}.html",
     )
 

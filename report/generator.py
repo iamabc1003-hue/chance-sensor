@@ -27,6 +27,7 @@ def generate_report(
     genre_watches: list[dict],
     watchlist_items: list[dict],
     rising_items: list[dict] = None,
+    wishlist_games: list[dict] = None,
     output_path: str = "report.html",
 ):
     """전체 HTML 리포트 생성"""
@@ -41,6 +42,7 @@ def generate_report(
     genre_html = _render_genre_watches(genre_watches)
     watchlist_html = _render_watchlist(watchlist_items)
     rising_html = _render_rising(rising_items or [])
+    wishlist_trending_html = _render_wishlist_trending(wishlist_games or [])
 
     html = TEMPLATE.format(
         issue_number=f"{issue_number:03d}",
@@ -57,6 +59,8 @@ def generate_report(
         watchlist_html=watchlist_html,
         rising_count=len(rising_items or []),
         rising_html=rising_html,
+        wishlist_trending_count=len(wishlist_games or []),
+        wishlist_trending_html=wishlist_trending_html,
     )
 
     with open(output_path, "w", encoding="utf-8") as f:
@@ -296,6 +300,24 @@ def _render_rising(items: list[dict]) -> str:
     return "\n".join(rows)
 
 
+def _render_wishlist_trending(games: list[dict]) -> str:
+    """🔮 Wishlist Trending — Steam 인기 출시 예정"""
+    if not games:
+        return '<div style="color: var(--text-muted); font-size: 13px; padding: 12px 0;">데이터 없음</div>'
+
+    rows = []
+    for g in games[:10]:
+        rows.append(f'''
+      <div class="rising-item">
+        <span class="rising-rank">{g.get("rank", "")}</span>
+        <div class="rising-info">
+          <div class="rising-name"><a href="{g.get("url", "#")}" target="_blank">{_escape(g.get("name", ""))}</a></div>
+        </div>
+      </div>''')
+
+    return "\n".join(rows)
+
+
 # ── HTML 템플릿 (확정 레이아웃 기반, CSS 포함) ──
 # 실제 운영 시에는 별도 template.html 파일로 분리 가능
 TEMPLATE = """<!DOCTYPE html>
@@ -506,6 +528,17 @@ body {{ font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: v
     </div>
     <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; padding: 8px 16px;">
       {rising_html}
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🔮</div>
+      <div class="section-title">Wishlist Trending</div>
+      <div class="section-count">인기 출시 예정 {wishlist_trending_count}건</div>
+    </div>
+    <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; padding: 8px 16px;">
+      {wishlist_trending_html}
     </div>
   </div>
 
