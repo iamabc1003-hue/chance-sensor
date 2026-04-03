@@ -14,7 +14,7 @@ from config import STEAMSPY_BASE_URL, STEAMSPY_GENRE_TAGS, STEAM_TRENDING_TOP_N
 
 logger = logging.getLogger(__name__)
 
-# 대형 기존작 제외 — 소유자 2000만 이상은 이미 알려진 게임
+# 대형 기존작 제외 — top 2weeks에서만 적용
 MEGA_TITLE_THRESHOLD = 20_000_000
 
 
@@ -47,7 +47,7 @@ def get_top_games_2weeks() -> list[dict]:
 
 
 def get_games_by_tag(tag: str) -> list[dict]:
-    """SteamSpy 태그별 게임 수집"""
+    """SteamSpy 태그별 게임 수집 (필터 없이 전체)"""
     try:
         resp = requests.get(
             STEAMSPY_BASE_URL,
@@ -59,9 +59,6 @@ def get_games_by_tag(tag: str) -> list[dict]:
 
         games = []
         for appid, info in data.items():
-            owners_mid = _parse_owners_mid(info.get("owners", "0 .. 0"))
-            if owners_mid >= MEGA_TITLE_THRESHOLD:
-                continue
             games.append(_parse_steamspy_game(appid, info))
 
         games.sort(key=lambda x: _parse_owners_mid(x["owners"]), reverse=True)
