@@ -15,7 +15,7 @@ from config import STEAMSPY_BASE_URL, STEAMSPY_GENRE_TAGS, STEAM_TRENDING_TOP_N
 logger = logging.getLogger(__name__)
 
 # 대형 기존작 제외 — top 2weeks에서만 적용
-MEGA_TITLE_THRESHOLD = 20_000_000
+MEGA_TITLE_THRESHOLD = 5_000_000  # 500만 이상은 이미 알려진 게임
 
 
 def get_top_games_2weeks() -> list[dict]:

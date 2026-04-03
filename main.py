@@ -113,8 +113,15 @@ def main():
     # Trending + Watchlist 구성
     trending = []
     for game in top_sorted[:STEAM_TRENDING_TOP_N]:
+        # 장르: Steam Store genres 우선, 없으면 SteamSpy tags 첫 번째 키
+        genres = game.get("genres", [])
         tags = game.get("tags", {})
-        genre = list(tags.keys())[0] if isinstance(tags, dict) and tags else ""
+        if genres:
+            genre = genres[0] if isinstance(genres, list) else str(genres)
+        elif isinstance(tags, dict) and tags:
+            genre = list(tags.keys())[0]
+        else:
+            genre = ""
         trending.append({
             "name": game.get("name", ""),
             "steam_url": game.get("steam_url", f"https://store.steampowered.com/app/{game.get('appid', '')}/"),
