@@ -234,7 +234,7 @@ def main():
         output_path=f"chance_sensor_{datetime.now().strftime('%Y%m%d')}.html",
     )
 
-    # ── Step 5: Google Drive ──
+    # ── Step 6: Google Drive ──
     logger.info("[6/6] Google Drive 업로드...")
     result = upload_report(report_path, issue_number)
     if result.get("url"):

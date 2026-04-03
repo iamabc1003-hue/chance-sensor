@@ -9,6 +9,15 @@ from datetime import datetime, timedelta
 logger = logging.getLogger(__name__)
 
 
+def _format_number(n: int) -> str:
+    """숫자 포맷: 1234567 → 1.2M, 12345 → 12.3K"""
+    if n >= 1_000_000:
+        return f"{n / 1_000_000:.1f}M"
+    elif n >= 1_000:
+        return f"{n / 1_000:.1f}K"
+    return str(n)
+
+
 def generate_report(
     issue_number: int,
     summary: str,
@@ -285,12 +294,6 @@ def _render_rising(items: list[dict]) -> str:
       </div>''')
 
     return "\n".join(rows)
-    """숫자 포맷: 1234567 → 1.2M, 12345 → 12.3K"""
-    if n >= 1_000_000:
-        return f"{n / 1_000_000:.1f}M"
-    elif n >= 1_000:
-        return f"{n / 1_000:.1f}K"
-    return str(n)
 
 
 # ── HTML 템플릿 (확정 레이아웃 기반, CSS 포함) ──
