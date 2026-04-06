@@ -7,6 +7,7 @@ Steam 수집 → Signal 감지 → Claude 분석 → HTML 생성 → Google Driv
 
 import logging
 import math
+import os
 import sys
 from datetime import datetime
 
@@ -239,7 +240,10 @@ def main():
         watchlist_items=watchlist_items,
         rising_items=rising_items,
         wishlist_games=wishlist_games,
-        output_path=f"chance_sensor_{datetime.now().strftime('%Y%m%d')}.html",
+        output_path=os.path.join(
+            os.environ.get("CHANCE_SENSOR_OUTPUT_DIR", "."),
+            f"chance_sensor_{datetime.now().strftime('%Y%m%d')}.html"
+        ),
     )
 
     # ── Step 6: Google Drive ──
