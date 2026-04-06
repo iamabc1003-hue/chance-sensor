@@ -10,9 +10,22 @@ import threading
 import time
 from datetime import datetime
 
-from flask import Flask, render_template_string, send_from_directory, redirect, url_for, jsonify
+from flask import Flask, render_template_string, send_from_directory, redirect, url_for, jsonify, request
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 app = Flask(__name__)
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
+
+# 프록시 경로 자동 감지: SCRIPT_NAME이 없으면 Referer에서 추출
+@app.before_request
+def detect_proxy_prefix():
+    if not request.environ.get("SCRIPT_NAME"):
+        referer = request.headers.get("Referer", "")
+        # /api/v1/ai-tools/XX/proxy 패턴 감지
+        import re
+        m = re.search(r"(/api/v1/ai-tools/\d+/proxy)", referer)
+        if m:
+            request.environ["SCRIPT_NAME"] = m.group(1)
 
 REPORTS_DIR = os.path.join(os.path.dirname(__file__), "reports")
 os.makedirs(REPORTS_DIR, exist_ok=True)
@@ -189,7 +202,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
   </div>
 
   <div class="actions">
-    <form action="/run" method="post" style="display: inline;">
+    <form action="{{ url_for('run') }}" method="post" style="display: inline;">
       <button type="submit" class="btn btn-primary" {{ 'disabled' if status.running }}>
         {{ '실행 중...' if status.running else '🚀 리포트 생성' }}
       </button>
@@ -219,8 +232,8 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
         </div>
       </div>
       <div class="report-actions">
-        <a href="/report/{{ r.filename }}" class="report-btn view" target="_blank">열기</a>
-        <a href="/download/{{ r.filename }}" class="report-btn">다운로드</a>
+        <a href="{{ url_for('view_report', filename=r.filename) }}" class="report-btn view" target="_blank">열기</a>
+        <a href="{{ url_for('download_report', filename=r.filename) }}" class="report-btn">다운로드</a>
       </div>
     </div>
     {% endfor %}
@@ -234,7 +247,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
   {% endif %}
 
   <div class="footer">
-    Chance Sensor v27 · RisingWings (Aetnite) · Powered by SteamSpy, Reddit, Claude AI
+    Chance Sensor v29 · RisingWings (Aetnite) · Powered by SteamSpy, Reddit, Claude AI
   </div>
 </div>
 
