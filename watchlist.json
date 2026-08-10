@@ -1,88 +1,4 @@
 {
-  "1144400": {
-    "name": "Senren＊Banka",
-    "url": "https://store.steampowered.com/app/1144400/",
-    "tags": [],
-    "first_detected": "2026-04-06",
-    "weekly_data": [
-      {
-        "date": "2026-04-06",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-04-06",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-04-13",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-04-20",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-04-27",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-05-04",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-05-11",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-05-18",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-05-25",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-01",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-08",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-15",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-22",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-29",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-06",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-13",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-20",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-08-03",
-        "owners_mid": 750000
-      }
-    ]
-  },
   "1307580": {
     "name": "TOEM: A Photo Adventure",
     "url": "https://store.steampowered.com/app/1307580/",
@@ -163,6 +79,10 @@
       },
       {
         "date": "2026-08-03",
+        "owners_mid": 350000
+      },
+      {
+        "date": "2026-08-10",
         "owners_mid": 350000
       }
     ]
@@ -248,174 +168,10 @@
       {
         "date": "2026-08-03",
         "owners_mid": 350000
-      }
-    ]
-  },
-  "2231450": {
-    "name": "Pizza Tower",
-    "url": "https://store.steampowered.com/app/2231450/",
-    "tags": [],
-    "first_detected": "2026-04-06",
-    "weekly_data": [
-      {
-        "date": "2026-04-06",
-        "owners_mid": 1500000
       },
       {
-        "date": "2026-04-06",
-        "owners_mid": 1500000
-      },
-      {
-        "date": "2026-04-13",
-        "owners_mid": 1500000
-      },
-      {
-        "date": "2026-04-20",
-        "owners_mid": 1500000
-      },
-      {
-        "date": "2026-04-27",
-        "owners_mid": 1500000
-      },
-      {
-        "date": "2026-05-04",
-        "owners_mid": 1500000
-      },
-      {
-        "date": "2026-05-11",
-        "owners_mid": 1500000
-      },
-      {
-        "date": "2026-05-18",
-        "owners_mid": 1500000
-      },
-      {
-        "date": "2026-05-25",
-        "owners_mid": 1500000
-      },
-      {
-        "date": "2026-06-01",
-        "owners_mid": 1500000
-      },
-      {
-        "date": "2026-06-08",
-        "owners_mid": 1500000
-      },
-      {
-        "date": "2026-06-15",
-        "owners_mid": 1500000
-      },
-      {
-        "date": "2026-06-22",
-        "owners_mid": 1500000
-      },
-      {
-        "date": "2026-06-29",
-        "owners_mid": 1500000
-      },
-      {
-        "date": "2026-07-06",
-        "owners_mid": 1500000
-      },
-      {
-        "date": "2026-07-13",
-        "owners_mid": 1500000
-      },
-      {
-        "date": "2026-07-20",
-        "owners_mid": 1500000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 1500000
-      },
-      {
-        "date": "2026-08-03",
-        "owners_mid": 1500000
-      }
-    ]
-  },
-  "546560": {
-    "name": "Half-Life: Alyx",
-    "url": "https://store.steampowered.com/app/546560/",
-    "tags": [],
-    "first_detected": "2026-04-06",
-    "weekly_data": [
-      {
-        "date": "2026-04-06",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-04-06",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-04-13",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-04-20",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-04-27",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-05-04",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-05-11",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-05-18",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-05-25",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-06-01",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-06-08",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-06-15",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-06-22",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-06-29",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-07-06",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-07-13",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-07-20",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-08-03",
-        "owners_mid": 3500000
+        "date": "2026-08-10",
+        "owners_mid": 350000
       }
     ]
   },
@@ -499,6 +255,10 @@
       },
       {
         "date": "2026-08-03",
+        "owners_mid": 1500000
+      },
+      {
+        "date": "2026-08-10",
         "owners_mid": 1500000
       }
     ]
@@ -584,89 +344,9 @@
       {
         "date": "2026-08-03",
         "owners_mid": 350000
-      }
-    ]
-  },
-  "1533420": {
-    "name": "Neon White",
-    "url": "https://store.steampowered.com/app/1533420/",
-    "tags": [],
-    "first_detected": "2026-04-06",
-    "weekly_data": [
-      {
-        "date": "2026-04-06",
-        "owners_mid": 350000
       },
       {
-        "date": "2026-04-06",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-04-13",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-04-20",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-04-27",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-05-04",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-05-11",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-05-18",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-05-25",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-06-01",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-06-08",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-06-15",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-06-22",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-06-29",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-07-06",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-07-13",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-07-20",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-08-03",
+        "date": "2026-08-10",
         "owners_mid": 350000
       }
     ]
@@ -752,6 +432,10 @@
       {
         "date": "2026-08-03",
         "owners_mid": 1500000
+      },
+      {
+        "date": "2026-08-10",
+        "owners_mid": 1500000
       }
     ]
   },
@@ -835,6 +519,10 @@
       },
       {
         "date": "2026-08-03",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-08-10",
         "owners_mid": 3500000
       }
     ]
@@ -920,6 +608,10 @@
       {
         "date": "2026-08-03",
         "owners_mid": 350000
+      },
+      {
+        "date": "2026-08-10",
+        "owners_mid": 350000
       }
     ]
   },
@@ -1004,89 +696,9 @@
       {
         "date": "2026-08-03",
         "owners_mid": 750000
-      }
-    ]
-  },
-  "774801": {
-    "name": "Crab Champions",
-    "url": "https://store.steampowered.com/app/774801/",
-    "tags": [],
-    "first_detected": "2026-04-06",
-    "weekly_data": [
-      {
-        "date": "2026-04-06",
-        "owners_mid": 750000
       },
       {
-        "date": "2026-04-06",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-04-13",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-04-20",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-04-27",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-05-04",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-05-11",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-05-18",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-05-25",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-01",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-08",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-15",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-22",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-29",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-06",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-13",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-20",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-08-03",
+        "date": "2026-08-10",
         "owners_mid": 750000
       }
     ]
@@ -1172,6 +784,10 @@
       {
         "date": "2026-08-03",
         "owners_mid": 750000
+      },
+      {
+        "date": "2026-08-10",
+        "owners_mid": 750000
       }
     ]
   },
@@ -1255,6 +871,10 @@
       },
       {
         "date": "2026-08-03",
+        "owners_mid": 750000
+      },
+      {
+        "date": "2026-08-10",
         "owners_mid": 750000
       }
     ]
@@ -1340,89 +960,9 @@
       {
         "date": "2026-08-03",
         "owners_mid": 750000
-      }
-    ]
-  },
-  "253230": {
-    "name": "A Hat in Time",
-    "url": "https://store.steampowered.com/app/253230/",
-    "tags": [],
-    "first_detected": "2026-04-06",
-    "weekly_data": [
-      {
-        "date": "2026-04-06",
-        "owners_mid": 750000
       },
       {
-        "date": "2026-04-06",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-04-13",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-04-20",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-04-27",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-05-04",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-05-11",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-05-18",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-05-25",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-01",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-08",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-15",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-22",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-29",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-06",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-13",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-20",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-08-03",
+        "date": "2026-08-10",
         "owners_mid": 750000
       }
     ]
@@ -1508,6 +1048,10 @@
       {
         "date": "2026-08-03",
         "owners_mid": 3500000
+      },
+      {
+        "date": "2026-08-10",
+        "owners_mid": 3500000
       }
     ]
   },
@@ -1591,6 +1135,10 @@
       },
       {
         "date": "2026-08-03",
+        "owners_mid": 1500000
+      },
+      {
+        "date": "2026-08-10",
         "owners_mid": 1500000
       }
     ]
@@ -1676,6 +1224,10 @@
       {
         "date": "2026-08-03",
         "owners_mid": 3500000
+      },
+      {
+        "date": "2026-08-10",
+        "owners_mid": 3500000
       }
     ]
   },
@@ -1760,6 +1312,10 @@
       {
         "date": "2026-08-03",
         "owners_mid": 750000
+      },
+      {
+        "date": "2026-08-10",
+        "owners_mid": 750000
       }
     ]
   },
@@ -1839,6 +1395,10 @@
       },
       {
         "date": "2026-08-03",
+        "owners_mid": 350000
+      },
+      {
+        "date": "2026-08-10",
         "owners_mid": 350000
       }
     ]
@@ -1920,6 +1480,10 @@
       {
         "date": "2026-08-03",
         "owners_mid": 750000
+      },
+      {
+        "date": "2026-08-10",
+        "owners_mid": 750000
       }
     ]
   },
@@ -1999,6 +1563,10 @@
       },
       {
         "date": "2026-08-03",
+        "owners_mid": 750000
+      },
+      {
+        "date": "2026-08-10",
         "owners_mid": 750000
       }
     ]
@@ -2080,86 +1648,10 @@
       {
         "date": "2026-08-03",
         "owners_mid": 350000
-      }
-    ]
-  },
-  "205100": {
-    "name": "Dishonored",
-    "url": "https://store.steampowered.com/app/205100/",
-    "tags": [],
-    "first_detected": "2026-04-06",
-    "weekly_data": [
-      {
-        "date": "2026-04-06",
-        "owners_mid": 3500000
       },
       {
-        "date": "2026-04-13",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-04-20",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-04-27",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-05-04",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-05-11",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-05-18",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-05-25",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-06-01",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-06-08",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-06-15",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-06-22",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-06-29",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-07-06",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-07-13",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-07-20",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-08-03",
-        "owners_mid": 3500000
+        "date": "2026-08-10",
+        "owners_mid": 350000
       }
     ]
   },
@@ -2239,6 +1731,10 @@
       },
       {
         "date": "2026-08-03",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-08-10",
         "owners_mid": 3500000
       }
     ]
@@ -2320,6 +1816,10 @@
       {
         "date": "2026-08-03",
         "owners_mid": 350000
+      },
+      {
+        "date": "2026-08-10",
+        "owners_mid": 350000
       }
     ]
   },
@@ -2400,6 +1900,10 @@
       {
         "date": "2026-08-03",
         "owners_mid": 1500000
+      },
+      {
+        "date": "2026-08-10",
+        "owners_mid": 1500000
       }
     ]
   },
@@ -2475,6 +1979,10 @@
       },
       {
         "date": "2026-08-03",
+        "owners_mid": 1500000
+      },
+      {
+        "date": "2026-08-10",
         "owners_mid": 1500000
       }
     ]
@@ -2552,6 +2060,10 @@
       {
         "date": "2026-08-03",
         "owners_mid": 1500000
+      },
+      {
+        "date": "2026-08-10",
+        "owners_mid": 1500000
       }
     ]
   },
@@ -2628,6 +2140,10 @@
       {
         "date": "2026-08-03",
         "owners_mid": 750000
+      },
+      {
+        "date": "2026-08-10",
+        "owners_mid": 750000
       }
     ]
   },
@@ -2691,6 +2207,10 @@
       },
       {
         "date": "2026-08-03",
+        "owners_mid": 750000
+      },
+      {
+        "date": "2026-08-10",
         "owners_mid": 750000
       }
     ]
@@ -2756,70 +2276,10 @@
       {
         "date": "2026-08-03",
         "owners_mid": 350000
-      }
-    ]
-  },
-  "504230": {
-    "name": "Celeste",
-    "url": "https://store.steampowered.com/app/504230/",
-    "tags": [],
-    "first_detected": "2026-05-04",
-    "weekly_data": [
-      {
-        "date": "2026-05-04",
-        "owners_mid": 3500000
       },
       {
-        "date": "2026-05-11",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-05-18",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-05-25",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-06-01",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-06-08",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-06-15",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-06-22",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-06-29",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-07-06",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-07-13",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-07-20",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-08-03",
-        "owners_mid": 3500000
+        "date": "2026-08-10",
+        "owners_mid": 350000
       }
     ]
   },
@@ -2884,69 +2344,9 @@
       {
         "date": "2026-08-03",
         "owners_mid": 750000
-      }
-    ]
-  },
-  "851100": {
-    "name": "Touhou Luna Nights",
-    "url": "https://store.steampowered.com/app/851100/",
-    "tags": [],
-    "first_detected": "2026-05-04",
-    "weekly_data": [
-      {
-        "date": "2026-05-04",
-        "owners_mid": 750000
       },
       {
-        "date": "2026-05-11",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-05-18",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-05-25",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-01",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-08",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-15",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-22",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-29",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-06",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-13",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-20",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-08-03",
+        "date": "2026-08-10",
         "owners_mid": 750000
       }
     ]
@@ -3012,6 +2412,10 @@
       {
         "date": "2026-08-03",
         "owners_mid": 750000
+      },
+      {
+        "date": "2026-08-10",
+        "owners_mid": 750000
       }
     ]
   },
@@ -3075,6 +2479,10 @@
       },
       {
         "date": "2026-08-03",
+        "owners_mid": 750000
+      },
+      {
+        "date": "2026-08-10",
         "owners_mid": 750000
       }
     ]
@@ -3140,377 +2548,9 @@
       {
         "date": "2026-08-03",
         "owners_mid": 750000
-      }
-    ]
-  },
-  "1562700": {
-    "name": "SANABI",
-    "url": "https://store.steampowered.com/app/1562700/",
-    "tags": [],
-    "first_detected": "2026-05-04",
-    "weekly_data": [
-      {
-        "date": "2026-05-04",
-        "owners_mid": 750000
       },
       {
-        "date": "2026-05-11",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-05-18",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-05-25",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-01",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-08",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-15",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-22",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-29",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-06",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-13",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-20",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-08-03",
-        "owners_mid": 750000
-      }
-    ]
-  },
-  "1055540": {
-    "name": "A Short Hike",
-    "url": "https://store.steampowered.com/app/1055540/",
-    "tags": [],
-    "first_detected": "2026-07-06",
-    "weekly_data": [
-      {
-        "date": "2026-07-06",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-07-13",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-07-20",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-08-03",
-        "owners_mid": 350000
-      }
-    ]
-  },
-  "1089980": {
-    "name": "The Henry Stickmin Collection",
-    "url": "https://store.steampowered.com/app/1089980/",
-    "tags": [],
-    "first_detected": "2026-07-20",
-    "weekly_data": [
-      {
-        "date": "2026-07-20",
-        "owners_mid": 1500000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 1500000
-      },
-      {
-        "date": "2026-08-03",
-        "owners_mid": 1500000
-      }
-    ]
-  },
-  "1230140": {
-    "name": "ATRI -My Dear Moments-",
-    "url": "https://store.steampowered.com/app/1230140/",
-    "tags": [],
-    "first_detected": "2026-07-20",
-    "weekly_data": [
-      {
-        "date": "2026-07-20",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-08-03",
-        "owners_mid": 350000
-      }
-    ]
-  },
-  "1170880": {
-    "name": "Grimm's Hollow",
-    "url": "https://store.steampowered.com/app/1170880/",
-    "tags": [],
-    "first_detected": "2026-07-20",
-    "weekly_data": [
-      {
-        "date": "2026-07-20",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-08-03",
-        "owners_mid": 750000
-      }
-    ]
-  },
-  "774181": {
-    "name": "Rhythm Doctor",
-    "url": "https://store.steampowered.com/app/774181/",
-    "tags": [],
-    "first_detected": "2026-07-20",
-    "weekly_data": [
-      {
-        "date": "2026-07-20",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-08-03",
-        "owners_mid": 750000
-      }
-    ]
-  },
-  "324160": {
-    "name": "CLANNAD",
-    "url": "https://store.steampowered.com/app/324160/",
-    "tags": [],
-    "first_detected": "2026-07-20",
-    "weekly_data": [
-      {
-        "date": "2026-07-20",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-08-03",
-        "owners_mid": 350000
-      }
-    ]
-  },
-  "2458530": {
-    "name": "魔女的夜宴",
-    "url": "https://store.steampowered.com/app/2458530/",
-    "tags": [],
-    "first_detected": "2026-07-20",
-    "weekly_data": [
-      {
-        "date": "2026-07-20",
-        "owners_mid": 150000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 150000
-      },
-      {
-        "date": "2026-08-03",
-        "owners_mid": 150000
-      }
-    ]
-  },
-  "1353230": {
-    "name": "Bomb Rush Cyberfunk",
-    "url": "https://store.steampowered.com/app/1353230/",
-    "tags": [],
-    "first_detected": "2026-07-20",
-    "weekly_data": [
-      {
-        "date": "2026-07-20",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-08-03",
-        "owners_mid": 350000
-      }
-    ]
-  },
-  "1082430": {
-    "name": "Before Your Eyes",
-    "url": "https://store.steampowered.com/app/1082430/",
-    "tags": [],
-    "first_detected": "2026-07-20",
-    "weekly_data": [
-      {
-        "date": "2026-07-20",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-08-03",
-        "owners_mid": 350000
-      }
-    ]
-  },
-  "250320": {
-    "name": "The Wolf Among Us",
-    "url": "https://store.steampowered.com/app/250320/",
-    "tags": [],
-    "first_detected": "2026-07-20",
-    "weekly_data": [
-      {
-        "date": "2026-07-20",
-        "owners_mid": 1500000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 1500000
-      },
-      {
-        "date": "2026-08-03",
-        "owners_mid": 1500000
-      }
-    ]
-  },
-  "1708150": {
-    "name": "Juice Galaxy",
-    "url": "https://store.steampowered.com/app/1708150/",
-    "tags": [],
-    "first_detected": "2026-07-20",
-    "weekly_data": [
-      {
-        "date": "2026-07-20",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-08-03",
-        "owners_mid": 350000
-      }
-    ]
-  },
-  "337340": {
-    "name": "Finding Paradise",
-    "url": "https://store.steampowered.com/app/337340/",
-    "tags": [],
-    "first_detected": "2026-07-20",
-    "weekly_data": [
-      {
-        "date": "2026-07-20",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-08-03",
-        "owners_mid": 750000
-      }
-    ]
-  },
-  "213670": {
-    "name": "South Park: The Stick of Truth",
-    "url": "https://store.steampowered.com/app/213670/",
-    "tags": [],
-    "first_detected": "2026-07-20",
-    "weekly_data": [
-      {
-        "date": "2026-07-20",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-08-03",
-        "owners_mid": 3500000
-      }
-    ]
-  },
-  "2001120": {
-    "name": "Split Fiction",
-    "url": "https://store.steampowered.com/app/2001120/",
-    "tags": [],
-    "first_detected": "2026-07-20",
-    "weekly_data": [
-      {
-        "date": "2026-07-20",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-08-03",
-        "owners_mid": 3500000
-      }
-    ]
-  },
-  "412830": {
-    "name": "STEINS;GATE",
-    "url": "https://store.steampowered.com/app/412830/",
-    "tags": [],
-    "first_detected": "2026-07-20",
-    "weekly_data": [
-      {
-        "date": "2026-07-20",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-08-03",
+        "date": "2026-08-10",
         "owners_mid": 750000
       }
     ]
@@ -3532,6 +2572,10 @@
       {
         "date": "2026-08-03",
         "owners_mid": 350000
+      },
+      {
+        "date": "2026-08-10",
+        "owners_mid": 350000
       }
     ]
   },
@@ -3551,6 +2595,10 @@
       },
       {
         "date": "2026-08-03",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-08-10",
         "owners_mid": 3500000
       }
     ]
@@ -3572,21 +2620,321 @@
       {
         "date": "2026-08-03",
         "owners_mid": 3500000
+      },
+      {
+        "date": "2026-08-10",
+        "owners_mid": 3500000
       }
     ]
   },
-  "2795000": {
-    "name": "The WereCleaner",
-    "url": "https://store.steampowered.com/app/2795000/",
+  "2291760": {
+    "name": "Papa's Freezeria Deluxe",
+    "url": "https://store.steampowered.com/app/2291760/",
     "tags": [],
-    "first_detected": "2026-07-27",
+    "first_detected": "2026-08-10",
     "weekly_data": [
       {
-        "date": "2026-07-27",
+        "date": "2026-08-10",
         "owners_mid": 350000
-      },
+      }
+    ]
+  },
+  "2379780": {
+    "name": "Balatro",
+    "url": "https://store.steampowered.com/app/2379780/",
+    "tags": [],
+    "first_detected": "2026-08-10",
+    "weekly_data": [
       {
-        "date": "2026-08-03",
+        "date": "2026-08-10",
+        "owners_mid": 3500000
+      }
+    ]
+  },
+  "1424330": {
+    "name": "Wobbledogs",
+    "url": "https://store.steampowered.com/app/1424330/",
+    "tags": [],
+    "first_detected": "2026-08-10",
+    "weekly_data": [
+      {
+        "date": "2026-08-10",
+        "owners_mid": 350000
+      }
+    ]
+  },
+  "667970": {
+    "name": "VTOL VR",
+    "url": "https://store.steampowered.com/app/667970/",
+    "tags": [],
+    "first_detected": "2026-08-10",
+    "weekly_data": [
+      {
+        "date": "2026-08-10",
+        "owners_mid": 750000
+      }
+    ]
+  },
+  "2162800": {
+    "name": "shapez 2 - Factory",
+    "url": "https://store.steampowered.com/app/2162800/",
+    "tags": [],
+    "first_detected": "2026-08-10",
+    "weekly_data": [
+      {
+        "date": "2026-08-10",
+        "owners_mid": 350000
+      }
+    ]
+  },
+  "736260": {
+    "name": "Baba Is You",
+    "url": "https://store.steampowered.com/app/736260/",
+    "tags": [],
+    "first_detected": "2026-08-10",
+    "weekly_data": [
+      {
+        "date": "2026-08-10",
+        "owners_mid": 1500000
+      }
+    ]
+  },
+  "1999360": {
+    "name": "Placid Plastic Duck Simulator",
+    "url": "https://store.steampowered.com/app/1999360/",
+    "tags": [],
+    "first_detected": "2026-08-10",
+    "weekly_data": [
+      {
+        "date": "2026-08-10",
+        "owners_mid": 350000
+      }
+    ]
+  },
+  "1366540": {
+    "name": "Dyson Sphere Program",
+    "url": "https://store.steampowered.com/app/1366540/",
+    "tags": [],
+    "first_detected": "2026-08-10",
+    "weekly_data": [
+      {
+        "date": "2026-08-10",
+        "owners_mid": 3500000
+      }
+    ]
+  },
+  "424280": {
+    "name": "Iron Snout",
+    "url": "https://store.steampowered.com/app/424280/",
+    "tags": [],
+    "first_detected": "2026-08-10",
+    "weekly_data": [
+      {
+        "date": "2026-08-10",
+        "owners_mid": 3500000
+      }
+    ]
+  },
+  "1369320": {
+    "name": "Virtual Cottage",
+    "url": "https://store.steampowered.com/app/1369320/",
+    "tags": [],
+    "first_detected": "2026-08-10",
+    "weekly_data": [
+      {
+        "date": "2026-08-10",
+        "owners_mid": 350000
+      }
+    ]
+  },
+  "3107330": {
+    "name": "Nodebuster",
+    "url": "https://store.steampowered.com/app/3107330/",
+    "tags": [],
+    "first_detected": "2026-08-10",
+    "weekly_data": [
+      {
+        "date": "2026-08-10",
+        "owners_mid": 350000
+      }
+    ]
+  },
+  "1390350": {
+    "name": "Webbed",
+    "url": "https://store.steampowered.com/app/1390350/",
+    "tags": [],
+    "first_detected": "2026-08-10",
+    "weekly_data": [
+      {
+        "date": "2026-08-10",
+        "owners_mid": 750000
+      }
+    ]
+  },
+  "2198150": {
+    "name": "Tiny Glade",
+    "url": "https://store.steampowered.com/app/2198150/",
+    "tags": [],
+    "first_detected": "2026-08-10",
+    "weekly_data": [
+      {
+        "date": "2026-08-10",
+        "owners_mid": 750000
+      }
+    ]
+  },
+  "2113850": {
+    "name": "Spirit City: Lofi Sessions",
+    "url": "https://store.steampowered.com/app/2113850/",
+    "tags": [],
+    "first_detected": "2026-08-10",
+    "weekly_data": [
+      {
+        "date": "2026-08-10",
+        "owners_mid": 350000
+      }
+    ]
+  },
+  "617670": {
+    "name": "Zup! S",
+    "url": "https://store.steampowered.com/app/617670/",
+    "tags": [],
+    "first_detected": "2026-08-10",
+    "weekly_data": [
+      {
+        "date": "2026-08-10",
+        "owners_mid": 350000
+      }
+    ]
+  },
+  "341800": {
+    "name": "Keep Talking and Nobody Explodes",
+    "url": "https://store.steampowered.com/app/341800/",
+    "tags": [],
+    "first_detected": "2026-08-10",
+    "weekly_data": [
+      {
+        "date": "2026-08-10",
+        "owners_mid": 1500000
+      }
+    ]
+  },
+  "239030": {
+    "name": "Papers, Please",
+    "url": "https://store.steampowered.com/app/239030/",
+    "tags": [],
+    "first_detected": "2026-08-10",
+    "weekly_data": [
+      {
+        "date": "2026-08-10",
+        "owners_mid": 3500000
+      }
+    ]
+  },
+  "3480": {
+    "name": "Peggle Deluxe",
+    "url": "https://store.steampowered.com/app/3480/",
+    "tags": [],
+    "first_detected": "2026-08-10",
+    "weekly_data": [
+      {
+        "date": "2026-08-10",
+        "owners_mid": 750000
+      }
+    ]
+  },
+  "3191030": {
+    "name": "Nubby's Number Factory",
+    "url": "https://store.steampowered.com/app/3191030/",
+    "tags": [],
+    "first_detected": "2026-08-10",
+    "weekly_data": [
+      {
+        "date": "2026-08-10",
+        "owners_mid": 350000
+      }
+    ]
+  },
+  "1275670": {
+    "name": "Outcore: Desktop Adventure",
+    "url": "https://store.steampowered.com/app/1275670/",
+    "tags": [],
+    "first_detected": "2026-08-10",
+    "weekly_data": [
+      {
+        "date": "2026-08-10",
+        "owners_mid": 750000
+      }
+    ]
+  },
+  "519860": {
+    "name": "DUSK",
+    "url": "https://store.steampowered.com/app/519860/",
+    "tags": [],
+    "first_detected": "2026-08-10",
+    "weekly_data": [
+      {
+        "date": "2026-08-10",
+        "owners_mid": 1500000
+      }
+    ]
+  },
+  "238460": {
+    "name": "BattleBlock Theater",
+    "url": "https://store.steampowered.com/app/238460/",
+    "tags": [],
+    "first_detected": "2026-08-10",
+    "weekly_data": [
+      {
+        "date": "2026-08-10",
+        "owners_mid": 3500000
+      }
+    ]
+  },
+  "362680": {
+    "name": "Fran Bow",
+    "url": "https://store.steampowered.com/app/362680/",
+    "tags": [],
+    "first_detected": "2026-08-10",
+    "weekly_data": [
+      {
+        "date": "2026-08-10",
+        "owners_mid": 1500000
+      }
+    ]
+  },
+  "1746030": {
+    "name": "Murders on the Yangtze River",
+    "url": "https://store.steampowered.com/app/1746030/",
+    "tags": [],
+    "first_detected": "2026-08-10",
+    "weekly_data": [
+      {
+        "date": "2026-08-10",
+        "owners_mid": 350000
+      }
+    ]
+  },
+  "541570": {
+    "name": "Sally Face - Episode One",
+    "url": "https://store.steampowered.com/app/541570/",
+    "tags": [],
+    "first_detected": "2026-08-10",
+    "weekly_data": [
+      {
+        "date": "2026-08-10",
+        "owners_mid": 1500000
+      }
+    ]
+  },
+  "1328840": {
+    "name": "Lost in Play",
+    "url": "https://store.steampowered.com/app/1328840/",
+    "tags": [],
+    "first_detected": "2026-08-10",
+    "weekly_data": [
+      {
+        "date": "2026-08-10",
         "owners_mid": 350000
       }
     ]
