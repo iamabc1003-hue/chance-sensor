@@ -1,4 +1,628 @@
 {
+  "926990": {
+    "name": "WolfQuest: Anniversary Edition",
+    "url": "https://store.steampowered.com/app/926990/",
+    "tags": [],
+    "first_detected": "2026-04-06",
+    "weekly_data": [
+      {
+        "date": "2026-04-06",
+        "owners_mid": 350000
+      },
+      {
+        "date": "2026-04-13",
+        "owners_mid": 350000
+      },
+      {
+        "date": "2026-04-20",
+        "owners_mid": 350000
+      },
+      {
+        "date": "2026-04-27",
+        "owners_mid": 350000
+      },
+      {
+        "date": "2026-05-04",
+        "owners_mid": 350000
+      },
+      {
+        "date": "2026-05-11",
+        "owners_mid": 350000
+      },
+      {
+        "date": "2026-05-18",
+        "owners_mid": 350000
+      },
+      {
+        "date": "2026-05-25",
+        "owners_mid": 350000
+      },
+      {
+        "date": "2026-06-01",
+        "owners_mid": 350000
+      },
+      {
+        "date": "2026-06-08",
+        "owners_mid": 350000
+      },
+      {
+        "date": "2026-06-15",
+        "owners_mid": 350000
+      },
+      {
+        "date": "2026-06-22",
+        "owners_mid": 350000
+      },
+      {
+        "date": "2026-06-29",
+        "owners_mid": 350000
+      },
+      {
+        "date": "2026-07-06",
+        "owners_mid": 350000
+      },
+      {
+        "date": "2026-07-13",
+        "owners_mid": 350000
+      },
+      {
+        "date": "2026-07-20",
+        "owners_mid": 350000
+      },
+      {
+        "date": "2026-07-27",
+        "owners_mid": 350000
+      },
+      {
+        "date": "2026-08-03",
+        "owners_mid": 350000
+      },
+      {
+        "date": "2026-08-10",
+        "owners_mid": 350000
+      },
+      {
+        "date": "2026-08-17",
+        "owners_mid": 350000
+      }
+    ]
+  },
+  "3590": {
+    "name": "Plants vs. Zombies GOTY Edition",
+    "url": "https://store.steampowered.com/app/3590/",
+    "tags": [],
+    "first_detected": "2026-04-06",
+    "weekly_data": [
+      {
+        "date": "2026-04-06",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-04-13",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-04-20",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-04-27",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-05-04",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-05-11",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-05-18",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-05-25",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-06-01",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-06-08",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-06-15",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-06-22",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-06-29",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-07-06",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-07-13",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-07-20",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-07-27",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-08-03",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-08-10",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-08-17",
+        "owners_mid": 3500000
+      }
+    ]
+  },
+  "207610": {
+    "name": "The Walking Dead",
+    "url": "https://store.steampowered.com/app/207610/",
+    "tags": [],
+    "first_detected": "2026-07-20",
+    "weekly_data": [
+      {
+        "date": "2026-07-20",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-07-27",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-08-03",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-08-10",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-08-17",
+        "owners_mid": 3500000
+      }
+    ]
+  },
+  "960090": {
+    "name": "Bloons TD 6",
+    "url": "https://store.steampowered.com/app/960090/",
+    "tags": [],
+    "first_detected": "2026-07-20",
+    "weekly_data": [
+      {
+        "date": "2026-07-20",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-07-27",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-08-03",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-08-10",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-08-17",
+        "owners_mid": 3500000
+      }
+    ]
+  },
+  "424280": {
+    "name": "Iron Snout",
+    "url": "https://store.steampowered.com/app/424280/",
+    "tags": [],
+    "first_detected": "2026-08-10",
+    "weekly_data": [
+      {
+        "date": "2026-08-10",
+        "owners_mid": 3500000
+      },
+      {
+        "date": "2026-08-17",
+        "owners_mid": 3500000
+      }
+    ]
+  },
+  "519860": {
+    "name": "DUSK",
+    "url": "https://store.steampowered.com/app/519860/",
+    "tags": [],
+    "first_detected": "2026-08-10",
+    "weekly_data": [
+      {
+        "date": "2026-08-10",
+        "owners_mid": 1500000
+      },
+      {
+        "date": "2026-08-17",
+        "owners_mid": 1500000
+      }
+    ]
+  },
+  "304430": {
+    "name": "INSIDE",
+    "url": "https://store.steampowered.com/app/304430/",
+    "tags": [],
+    "first_detected": "2026-08-17",
+    "weekly_data": [
+      {
+        "date": "2026-08-17",
+        "owners_mid": 3500000
+      }
+    ]
+  },
+  "420110": {
+    "name": "NEKOPARA Vol. 2",
+    "url": "https://store.steampowered.com/app/420110/",
+    "tags": [],
+    "first_detected": "2026-08-17",
+    "weekly_data": [
+      {
+        "date": "2026-08-17",
+        "owners_mid": 750000
+      }
+    ]
+  },
+  "602520": {
+    "name": "NEKOPARA Vol. 3",
+    "url": "https://store.steampowered.com/app/602520/",
+    "tags": [],
+    "first_detected": "2026-08-17",
+    "weekly_data": [
+      {
+        "date": "2026-08-17",
+        "owners_mid": 350000
+      }
+    ]
+  },
+  "221640": {
+    "name": "Super Hexagon",
+    "url": "https://store.steampowered.com/app/221640/",
+    "tags": [],
+    "first_detected": "2026-08-17",
+    "weekly_data": [
+      {
+        "date": "2026-08-17",
+        "owners_mid": 1500000
+      }
+    ]
+  },
+  "597170": {
+    "name": "Clone Drone in the Danger Zone",
+    "url": "https://store.steampowered.com/app/597170/",
+    "tags": [],
+    "first_detected": "2026-08-17",
+    "weekly_data": [
+      {
+        "date": "2026-08-17",
+        "owners_mid": 1500000
+      }
+    ]
+  },
+  "457140": {
+    "name": "Oxygen Not Included",
+    "url": "https://store.steampowered.com/app/457140/",
+    "tags": [],
+    "first_detected": "2026-08-17",
+    "weekly_data": [
+      {
+        "date": "2026-08-17",
+        "owners_mid": 3500000
+      }
+    ]
+  },
+  "1901370": {
+    "name": "Ib",
+    "url": "https://store.steampowered.com/app/1901370/",
+    "tags": [],
+    "first_detected": "2026-08-17",
+    "weekly_data": [
+      {
+        "date": "2026-08-17",
+        "owners_mid": 350000
+      }
+    ]
+  },
+  "1942280": {
+    "name": "Brotato",
+    "url": "https://store.steampowered.com/app/1942280/",
+    "tags": [],
+    "first_detected": "2026-08-17",
+    "weekly_data": [
+      {
+        "date": "2026-08-17",
+        "owners_mid": 3500000
+      }
+    ]
+  },
+  "219740": {
+    "name": "Don't Starve",
+    "url": "https://store.steampowered.com/app/219740/",
+    "tags": [],
+    "first_detected": "2026-08-17",
+    "weekly_data": [
+      {
+        "date": "2026-08-17",
+        "owners_mid": 3500000
+      }
+    ]
+  },
+  "610370": {
+    "name": "Desperados III",
+    "url": "https://store.steampowered.com/app/610370/",
+    "tags": [],
+    "first_detected": "2026-08-17",
+    "weekly_data": [
+      {
+        "date": "2026-08-17",
+        "owners_mid": 750000
+      }
+    ]
+  },
+  "238320": {
+    "name": "Outlast",
+    "url": "https://store.steampowered.com/app/238320/",
+    "tags": [],
+    "first_detected": "2026-08-17",
+    "weekly_data": [
+      {
+        "date": "2026-08-17",
+        "owners_mid": 3500000
+      }
+    ]
+  },
+  "261030": {
+    "name": "The Walking Dead: Season Two",
+    "url": "https://store.steampowered.com/app/261030/",
+    "tags": [],
+    "first_detected": "2026-08-17",
+    "weekly_data": [
+      {
+        "date": "2026-08-17",
+        "owners_mid": 1500000
+      }
+    ]
+  },
+  "427410": {
+    "name": "Abiotic Factor",
+    "url": "https://store.steampowered.com/app/427410/",
+    "tags": [],
+    "first_detected": "2026-08-17",
+    "weekly_data": [
+      {
+        "date": "2026-08-17",
+        "owners_mid": 750000
+      }
+    ]
+  },
+  "413420": {
+    "name": "Danganronpa 2: Goodbye Despair",
+    "url": "https://store.steampowered.com/app/413420/",
+    "tags": [],
+    "first_detected": "2026-08-17",
+    "weekly_data": [
+      {
+        "date": "2026-08-17",
+        "owners_mid": 750000
+      }
+    ]
+  },
+  "589590": {
+    "name": "Kindergarten",
+    "url": "https://store.steampowered.com/app/589590/",
+    "tags": [],
+    "first_detected": "2026-08-17",
+    "weekly_data": [
+      {
+        "date": "2026-08-17",
+        "owners_mid": 350000
+      }
+    ]
+  },
+  "629520": {
+    "name": "Soundpad",
+    "url": "https://store.steampowered.com/app/629520/",
+    "tags": [],
+    "first_detected": "2026-08-17",
+    "weekly_data": [
+      {
+        "date": "2026-08-17",
+        "owners_mid": 3500000
+      }
+    ]
+  },
+  "1284190": {
+    "name": "The Planet Crafter",
+    "url": "https://store.steampowered.com/app/1284190/",
+    "tags": [],
+    "first_detected": "2026-08-17",
+    "weekly_data": [
+      {
+        "date": "2026-08-17",
+        "owners_mid": 1500000
+      }
+    ]
+  },
+  "418240": {
+    "name": "Shadow Tactics: Blades of the Shogun",
+    "url": "https://store.steampowered.com/app/418240/",
+    "tags": [],
+    "first_detected": "2026-08-17",
+    "weekly_data": [
+      {
+        "date": "2026-08-17",
+        "owners_mid": 1500000
+      }
+    ]
+  },
+  "413410": {
+    "name": "Danganronpa: Trigger Happy Havoc",
+    "url": "https://store.steampowered.com/app/413410/",
+    "tags": [],
+    "first_detected": "2026-08-17",
+    "weekly_data": [
+      {
+        "date": "2026-08-17",
+        "owners_mid": 1500000
+      }
+    ]
+  },
+  "282140": {
+    "name": "SOMA",
+    "url": "https://store.steampowered.com/app/282140/",
+    "tags": [],
+    "first_detected": "2026-08-17",
+    "weekly_data": [
+      {
+        "date": "2026-08-17",
+        "owners_mid": 3500000
+      }
+    ]
+  },
+  "732690": {
+    "name": "FIVE NIGHTS AT FREDDY'S: HELP WANTED",
+    "url": "https://store.steampowered.com/app/732690/",
+    "tags": [],
+    "first_detected": "2026-08-17",
+    "weekly_data": [
+      {
+        "date": "2026-08-17",
+        "owners_mid": 750000
+      }
+    ]
+  },
+  "337320": {
+    "name": "Paint the Town Red",
+    "url": "https://store.steampowered.com/app/337320/",
+    "tags": [],
+    "first_detected": "2026-08-17",
+    "weekly_data": [
+      {
+        "date": "2026-08-17",
+        "owners_mid": 1500000
+      }
+    ]
+  },
+  "1644940": {
+    "name": "Loddlenaut",
+    "url": "https://store.steampowered.com/app/1644940/",
+    "tags": [],
+    "first_detected": "2026-08-17",
+    "weekly_data": [
+      {
+        "date": "2026-08-17",
+        "owners_mid": 150000
+      }
+    ]
+  },
+  "1127400": {
+    "name": "Mindustry",
+    "url": "https://store.steampowered.com/app/1127400/",
+    "tags": [],
+    "first_detected": "2026-08-17",
+    "weekly_data": [
+      {
+        "date": "2026-08-17",
+        "owners_mid": 1500000
+      }
+    ]
+  },
+  "1196590": {
+    "name": "Resident Evil Village",
+    "url": "https://store.steampowered.com/app/1196590/",
+    "tags": [],
+    "first_detected": "2026-08-17",
+    "weekly_data": [
+      {
+        "date": "2026-08-17",
+        "owners_mid": 3500000
+      }
+    ]
+  },
+  "2088840": {
+    "name": "Picayune Dreams",
+    "url": "https://store.steampowered.com/app/2088840/",
+    "tags": [],
+    "first_detected": "2026-08-17",
+    "weekly_data": [
+      {
+        "date": "2026-08-17",
+        "owners_mid": 150000
+      }
+    ]
+  },
+  "22490": {
+    "name": "Fallout: New Vegas",
+    "url": "https://store.steampowered.com/app/22490/",
+    "tags": [],
+    "first_detected": "2026-08-17",
+    "weekly_data": [
+      {
+        "date": "2026-08-17",
+        "owners_mid": 750000
+      }
+    ]
+  },
+  "41700": {
+    "name": "S.T.A.L.K.E.R.: Call of Pripyat",
+    "url": "https://store.steampowered.com/app/41700/",
+    "tags": [],
+    "first_detected": "2026-08-17",
+    "weekly_data": [
+      {
+        "date": "2026-08-17",
+        "owners_mid": 1500000
+      }
+    ]
+  },
+  "1062090": {
+    "name": "Timberborn",
+    "url": "https://store.steampowered.com/app/1062090/",
+    "tags": [],
+    "first_detected": "2026-08-17",
+    "weekly_data": [
+      {
+        "date": "2026-08-17",
+        "owners_mid": 1500000
+      }
+    ]
+  },
+  "233860": {
+    "name": "Kenshi",
+    "url": "https://store.steampowered.com/app/233860/",
+    "tags": [],
+    "first_detected": "2026-08-17",
+    "weekly_data": [
+      {
+        "date": "2026-08-17",
+        "owners_mid": 3500000
+      }
+    ]
+  },
   "1307580": {
     "name": "TOEM: A Photo Adventure",
     "url": "https://store.steampowered.com/app/1307580/",
@@ -1571,174 +2195,6 @@
       }
     ]
   },
-  "926990": {
-    "name": "WolfQuest: Anniversary Edition",
-    "url": "https://store.steampowered.com/app/926990/",
-    "tags": [],
-    "first_detected": "2026-04-06",
-    "weekly_data": [
-      {
-        "date": "2026-04-06",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-04-13",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-04-20",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-04-27",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-05-04",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-05-11",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-05-18",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-05-25",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-06-01",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-06-08",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-06-15",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-06-22",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-06-29",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-07-06",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-07-13",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-07-20",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-08-03",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-08-10",
-        "owners_mid": 350000
-      }
-    ]
-  },
-  "3590": {
-    "name": "Plants vs. Zombies GOTY Edition",
-    "url": "https://store.steampowered.com/app/3590/",
-    "tags": [],
-    "first_detected": "2026-04-06",
-    "weekly_data": [
-      {
-        "date": "2026-04-06",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-04-13",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-04-20",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-04-27",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-05-04",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-05-11",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-05-18",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-05-25",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-06-01",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-06-08",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-06-15",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-06-22",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-06-29",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-07-06",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-07-13",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-07-20",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-08-03",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-08-10",
-        "owners_mid": 3500000
-      }
-    ]
-  },
   "1093910": {
     "name": "Tales of the Black Forest",
     "url": "https://store.steampowered.com/app/1093910/",
@@ -2212,730 +2668,6 @@
       {
         "date": "2026-08-10",
         "owners_mid": 750000
-      }
-    ]
-  },
-  "557600": {
-    "name": "Gorogoa",
-    "url": "https://store.steampowered.com/app/557600/",
-    "tags": [],
-    "first_detected": "2026-05-04",
-    "weekly_data": [
-      {
-        "date": "2026-05-04",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-05-11",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-05-18",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-05-25",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-06-01",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-06-08",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-06-15",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-06-22",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-06-29",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-07-06",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-07-13",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-07-20",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-08-03",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-08-10",
-        "owners_mid": 350000
-      }
-    ]
-  },
-  "597220": {
-    "name": "West of Loathing",
-    "url": "https://store.steampowered.com/app/597220/",
-    "tags": [],
-    "first_detected": "2026-05-04",
-    "weekly_data": [
-      {
-        "date": "2026-05-04",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-05-11",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-05-18",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-05-25",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-01",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-08",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-15",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-22",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-29",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-06",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-13",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-20",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-08-03",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-08-10",
-        "owners_mid": 750000
-      }
-    ]
-  },
-  "351640": {
-    "name": "Eternal Senia",
-    "url": "https://store.steampowered.com/app/351640/",
-    "tags": [],
-    "first_detected": "2026-05-04",
-    "weekly_data": [
-      {
-        "date": "2026-05-04",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-05-11",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-05-18",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-05-25",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-01",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-08",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-15",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-22",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-29",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-06",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-13",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-20",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-08-03",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-08-10",
-        "owners_mid": 750000
-      }
-    ]
-  },
-  "447530": {
-    "name": "VA-11 Hall-A: Cyberpunk Bartender Action",
-    "url": "https://store.steampowered.com/app/447530/",
-    "tags": [],
-    "first_detected": "2026-05-04",
-    "weekly_data": [
-      {
-        "date": "2026-05-04",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-05-11",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-05-18",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-05-25",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-01",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-08",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-15",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-22",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-29",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-06",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-13",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-20",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-08-03",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-08-10",
-        "owners_mid": 750000
-      }
-    ]
-  },
-  "206190": {
-    "name": "Gunpoint",
-    "url": "https://store.steampowered.com/app/206190/",
-    "tags": [],
-    "first_detected": "2026-05-04",
-    "weekly_data": [
-      {
-        "date": "2026-05-04",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-05-11",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-05-18",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-05-25",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-01",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-08",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-15",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-22",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-06-29",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-06",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-13",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-20",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-08-03",
-        "owners_mid": 750000
-      },
-      {
-        "date": "2026-08-10",
-        "owners_mid": 750000
-      }
-    ]
-  },
-  "1520370": {
-    "name": "Mon Bazou",
-    "url": "https://store.steampowered.com/app/1520370/",
-    "tags": [],
-    "first_detected": "2026-07-20",
-    "weekly_data": [
-      {
-        "date": "2026-07-20",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-08-03",
-        "owners_mid": 350000
-      },
-      {
-        "date": "2026-08-10",
-        "owners_mid": 350000
-      }
-    ]
-  },
-  "207610": {
-    "name": "The Walking Dead",
-    "url": "https://store.steampowered.com/app/207610/",
-    "tags": [],
-    "first_detected": "2026-07-20",
-    "weekly_data": [
-      {
-        "date": "2026-07-20",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-08-03",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-08-10",
-        "owners_mid": 3500000
-      }
-    ]
-  },
-  "960090": {
-    "name": "Bloons TD 6",
-    "url": "https://store.steampowered.com/app/960090/",
-    "tags": [],
-    "first_detected": "2026-07-20",
-    "weekly_data": [
-      {
-        "date": "2026-07-20",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-07-27",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-08-03",
-        "owners_mid": 3500000
-      },
-      {
-        "date": "2026-08-10",
-        "owners_mid": 3500000
-      }
-    ]
-  },
-  "2291760": {
-    "name": "Papa's Freezeria Deluxe",
-    "url": "https://store.steampowered.com/app/2291760/",
-    "tags": [],
-    "first_detected": "2026-08-10",
-    "weekly_data": [
-      {
-        "date": "2026-08-10",
-        "owners_mid": 350000
-      }
-    ]
-  },
-  "2379780": {
-    "name": "Balatro",
-    "url": "https://store.steampowered.com/app/2379780/",
-    "tags": [],
-    "first_detected": "2026-08-10",
-    "weekly_data": [
-      {
-        "date": "2026-08-10",
-        "owners_mid": 3500000
-      }
-    ]
-  },
-  "1424330": {
-    "name": "Wobbledogs",
-    "url": "https://store.steampowered.com/app/1424330/",
-    "tags": [],
-    "first_detected": "2026-08-10",
-    "weekly_data": [
-      {
-        "date": "2026-08-10",
-        "owners_mid": 350000
-      }
-    ]
-  },
-  "667970": {
-    "name": "VTOL VR",
-    "url": "https://store.steampowered.com/app/667970/",
-    "tags": [],
-    "first_detected": "2026-08-10",
-    "weekly_data": [
-      {
-        "date": "2026-08-10",
-        "owners_mid": 750000
-      }
-    ]
-  },
-  "2162800": {
-    "name": "shapez 2 - Factory",
-    "url": "https://store.steampowered.com/app/2162800/",
-    "tags": [],
-    "first_detected": "2026-08-10",
-    "weekly_data": [
-      {
-        "date": "2026-08-10",
-        "owners_mid": 350000
-      }
-    ]
-  },
-  "736260": {
-    "name": "Baba Is You",
-    "url": "https://store.steampowered.com/app/736260/",
-    "tags": [],
-    "first_detected": "2026-08-10",
-    "weekly_data": [
-      {
-        "date": "2026-08-10",
-        "owners_mid": 1500000
-      }
-    ]
-  },
-  "1999360": {
-    "name": "Placid Plastic Duck Simulator",
-    "url": "https://store.steampowered.com/app/1999360/",
-    "tags": [],
-    "first_detected": "2026-08-10",
-    "weekly_data": [
-      {
-        "date": "2026-08-10",
-        "owners_mid": 350000
-      }
-    ]
-  },
-  "1366540": {
-    "name": "Dyson Sphere Program",
-    "url": "https://store.steampowered.com/app/1366540/",
-    "tags": [],
-    "first_detected": "2026-08-10",
-    "weekly_data": [
-      {
-        "date": "2026-08-10",
-        "owners_mid": 3500000
-      }
-    ]
-  },
-  "424280": {
-    "name": "Iron Snout",
-    "url": "https://store.steampowered.com/app/424280/",
-    "tags": [],
-    "first_detected": "2026-08-10",
-    "weekly_data": [
-      {
-        "date": "2026-08-10",
-        "owners_mid": 3500000
-      }
-    ]
-  },
-  "1369320": {
-    "name": "Virtual Cottage",
-    "url": "https://store.steampowered.com/app/1369320/",
-    "tags": [],
-    "first_detected": "2026-08-10",
-    "weekly_data": [
-      {
-        "date": "2026-08-10",
-        "owners_mid": 350000
-      }
-    ]
-  },
-  "3107330": {
-    "name": "Nodebuster",
-    "url": "https://store.steampowered.com/app/3107330/",
-    "tags": [],
-    "first_detected": "2026-08-10",
-    "weekly_data": [
-      {
-        "date": "2026-08-10",
-        "owners_mid": 350000
-      }
-    ]
-  },
-  "1390350": {
-    "name": "Webbed",
-    "url": "https://store.steampowered.com/app/1390350/",
-    "tags": [],
-    "first_detected": "2026-08-10",
-    "weekly_data": [
-      {
-        "date": "2026-08-10",
-        "owners_mid": 750000
-      }
-    ]
-  },
-  "2198150": {
-    "name": "Tiny Glade",
-    "url": "https://store.steampowered.com/app/2198150/",
-    "tags": [],
-    "first_detected": "2026-08-10",
-    "weekly_data": [
-      {
-        "date": "2026-08-10",
-        "owners_mid": 750000
-      }
-    ]
-  },
-  "2113850": {
-    "name": "Spirit City: Lofi Sessions",
-    "url": "https://store.steampowered.com/app/2113850/",
-    "tags": [],
-    "first_detected": "2026-08-10",
-    "weekly_data": [
-      {
-        "date": "2026-08-10",
-        "owners_mid": 350000
-      }
-    ]
-  },
-  "617670": {
-    "name": "Zup! S",
-    "url": "https://store.steampowered.com/app/617670/",
-    "tags": [],
-    "first_detected": "2026-08-10",
-    "weekly_data": [
-      {
-        "date": "2026-08-10",
-        "owners_mid": 350000
-      }
-    ]
-  },
-  "341800": {
-    "name": "Keep Talking and Nobody Explodes",
-    "url": "https://store.steampowered.com/app/341800/",
-    "tags": [],
-    "first_detected": "2026-08-10",
-    "weekly_data": [
-      {
-        "date": "2026-08-10",
-        "owners_mid": 1500000
-      }
-    ]
-  },
-  "239030": {
-    "name": "Papers, Please",
-    "url": "https://store.steampowered.com/app/239030/",
-    "tags": [],
-    "first_detected": "2026-08-10",
-    "weekly_data": [
-      {
-        "date": "2026-08-10",
-        "owners_mid": 3500000
-      }
-    ]
-  },
-  "3480": {
-    "name": "Peggle Deluxe",
-    "url": "https://store.steampowered.com/app/3480/",
-    "tags": [],
-    "first_detected": "2026-08-10",
-    "weekly_data": [
-      {
-        "date": "2026-08-10",
-        "owners_mid": 750000
-      }
-    ]
-  },
-  "3191030": {
-    "name": "Nubby's Number Factory",
-    "url": "https://store.steampowered.com/app/3191030/",
-    "tags": [],
-    "first_detected": "2026-08-10",
-    "weekly_data": [
-      {
-        "date": "2026-08-10",
-        "owners_mid": 350000
-      }
-    ]
-  },
-  "1275670": {
-    "name": "Outcore: Desktop Adventure",
-    "url": "https://store.steampowered.com/app/1275670/",
-    "tags": [],
-    "first_detected": "2026-08-10",
-    "weekly_data": [
-      {
-        "date": "2026-08-10",
-        "owners_mid": 750000
-      }
-    ]
-  },
-  "519860": {
-    "name": "DUSK",
-    "url": "https://store.steampowered.com/app/519860/",
-    "tags": [],
-    "first_detected": "2026-08-10",
-    "weekly_data": [
-      {
-        "date": "2026-08-10",
-        "owners_mid": 1500000
-      }
-    ]
-  },
-  "238460": {
-    "name": "BattleBlock Theater",
-    "url": "https://store.steampowered.com/app/238460/",
-    "tags": [],
-    "first_detected": "2026-08-10",
-    "weekly_data": [
-      {
-        "date": "2026-08-10",
-        "owners_mid": 3500000
-      }
-    ]
-  },
-  "362680": {
-    "name": "Fran Bow",
-    "url": "https://store.steampowered.com/app/362680/",
-    "tags": [],
-    "first_detected": "2026-08-10",
-    "weekly_data": [
-      {
-        "date": "2026-08-10",
-        "owners_mid": 1500000
-      }
-    ]
-  },
-  "1746030": {
-    "name": "Murders on the Yangtze River",
-    "url": "https://store.steampowered.com/app/1746030/",
-    "tags": [],
-    "first_detected": "2026-08-10",
-    "weekly_data": [
-      {
-        "date": "2026-08-10",
-        "owners_mid": 350000
-      }
-    ]
-  },
-  "541570": {
-    "name": "Sally Face - Episode One",
-    "url": "https://store.steampowered.com/app/541570/",
-    "tags": [],
-    "first_detected": "2026-08-10",
-    "weekly_data": [
-      {
-        "date": "2026-08-10",
-        "owners_mid": 1500000
-      }
-    ]
-  },
-  "1328840": {
-    "name": "Lost in Play",
-    "url": "https://store.steampowered.com/app/1328840/",
-    "tags": [],
-    "first_detected": "2026-08-10",
-    "weekly_data": [
-      {
-        "date": "2026-08-10",
-        "owners_mid": 350000
       }
     ]
   }
